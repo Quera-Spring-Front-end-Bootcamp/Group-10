@@ -1,13 +1,10 @@
-import { Link } from "react-router-dom";
-import Button from "../components/ui/button";
+import QLink from "../components/ui/QLink";
 
 const Login = () => {
   return (
     <div>
       <h1>login Page</h1>
-      <Button>
-        <Link to="/register">Go To Register</Link>
-      </Button>
+      <QLink to="/register">Go To Register</QLink>
     </div>
   );
 };

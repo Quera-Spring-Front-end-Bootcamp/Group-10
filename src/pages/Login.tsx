@@ -3,14 +3,12 @@ import Button from "../components/ui/Button";
 
 const Login = () => {
   return (
-    <>
-      <div>
-        <h1>login Page</h1>
-        <Button>
-          <Link to="/register">Go To Register</Link>
-        </Button>
-      </div>
-    </>
+    <div>
+      <h1>صفحه لاگین</h1>
+      <Button>
+        <Link to="/register">انتقال به صفحه ساخت کاربر</Link>
+      </Button>
+    </div>
   );
 };
 

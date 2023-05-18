@@ -10,7 +10,10 @@ const Button = ({
   >
 >) => {
   return (
-    <button {...props} className="bg-slate-400 p-2 rounded-md">
+    <button
+      {...props}
+      className={`bg-primary text-center text-white p-2.5 rounded-md ${props.className}`}
+    >
       {children}
     </button>
   );

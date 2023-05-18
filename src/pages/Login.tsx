@@ -3,7 +3,7 @@ import Button from "../components/ui/Button";
 
 const Login = () => {
   return (
-    <div className="flex flex-row">
+    <div>
       <h1>صفحه لاگین</h1>
       <Button>
         <Link to="/register">انتقال به صفحه ساخت کاربر</Link>

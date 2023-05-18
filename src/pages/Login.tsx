@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import Button from "../components/ui/Button";
-import TextInput from "../components/ui/TextInput";
 
 const Login = () => {
   return (
@@ -11,7 +10,6 @@ const Login = () => {
           <Link to="/register">Go To Register</Link>
         </Button>
       </div>
-      <TextInput type="text" label="ایمیل" />
     </>
   );
 };

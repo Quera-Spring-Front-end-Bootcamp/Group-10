@@ -6,7 +6,7 @@ const Login = () => {
     <div>
       <h1>صفحه لاگین</h1>
       <Button>
-        <Link to="/register">Go To Register</Link>
+        <Link to="/register">انتقال به صفحه ساخت کاربر</Link>
       </Button>
     </div>
   );

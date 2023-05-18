@@ -1,9 +1,10 @@
 import { Outlet } from "react-router-dom";
+import AnonymousHeader from "../components/AnonymousHeader";
 
 const AnonymousLayout = () => {
   return (
     <>
-      <h1>AnonymousLayout</h1>
+      <AnonymousHeader />
       <Outlet />
     </>
   );

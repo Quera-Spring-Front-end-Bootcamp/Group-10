@@ -5,6 +5,10 @@ export default {
     extend: {
       colors: {
         primary: "#208D8E",
+        warning: "#FF9800",
+        error: "#FF5722",
+        success: "#4CAF50",
+        gray: "#AAAAAA",
       },
     },
   },

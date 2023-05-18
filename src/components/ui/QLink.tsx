@@ -1,8 +1,8 @@
 import { Link, LinkProps } from "react-router-dom";
 
-export default function QLink({ to, children, className }: LinkProps) {
+export default function QLink({ children, className, ...props }: LinkProps) {
   return (
-    <Link to={to} className={`text-primary ${className}`}>
+    <Link {...props} className={`text-primary ${className}`}>
       {children}
     </Link>
   );

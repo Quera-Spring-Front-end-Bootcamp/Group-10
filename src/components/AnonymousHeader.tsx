@@ -3,7 +3,7 @@ import Button from "./ui/Button";
 
 function AnonymousHeader() {
   return (
-    <div className="px-8 flex flex-row justify-between sticky top-8">
+    <div className="p-8 flex flex-row justify-between">
       <span className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
         کوئرا تسک منیجر
       </span>

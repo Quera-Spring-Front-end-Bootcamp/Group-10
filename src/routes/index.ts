@@ -7,6 +7,8 @@ import MainLayout from "../layouts/MainLayout";
 // Pages
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import ForgetPassword from "../pages/ForgetPassword";
+import ForgetPasswordConfirm from "../pages/ForgetPasswordConfirm";
 
 /* -------------------------------------------------------------------------- */
 /*                                    Types                                   */
@@ -46,15 +48,15 @@ export const routes: LayoutType[] = [
       {
         name: "forgetPassword",
         title: "ForgetPassword page",
-        component: Register,
-        path: "/forgetPassword",
+        component: ForgetPassword,
+        path: "/forget-password",
         isPublic: true,
       },
       {
         name: "forgetPasswordConfirm",
         title: "ForgetPasswordConfirm page",
-        component: Register,
-        path: "/forgetPasswordConfirm",
+        component: ForgetPasswordConfirm,
+        path: "/forget-password-confirm",
         isPublic: true,
       },
     ],

@@ -2,33 +2,86 @@ import { useNavigate } from "react-router-dom";
 import Button from "../components/ui/Button";
 import TextInput from "../components/ui/TextInput";
 import Checkbox from "../components/ui/Checkbox";
+import Card from "../components/ui/Card";
+import { useForm } from "react-hook-form";
 
-const Register = () => {
-  const navigate = useNavigate();
+type RegisterFormData = {
+  name: string;
+  email: string;
+  password: string;
+  isAccepted: boolean;
+};
 
-  const handleGoToLogin = () => {
-    navigate("/login");
-  };
-  const handleSubmit = () => {
-    console.log("yes");
-  };
+function Register() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<RegisterFormData>();
+
+  function handleSubmitForm(data: RegisterFormData) {
+    console.log(data);
+  }
 
   return (
-    <div className="flex flex-col justify-center items-center">
-      <form onSubmit={handleSubmit}>
-        <h3 className="text-[32px] font-semibold">
+    <div className="flex w-screen h-screen items-center justify-center">
+      <Card>
+        <h1 className="font-semibold text-lg sm:text-xl md:text-2xl lg:text-3xl">
           ثبت نام در کوئرا تسک منیجر
-        </h3>
-        <TextInput className="mb-1 w-full" type="text" label="نام کامل" />
-        <TextInput className="mb-1 w-full" type="email" label="ایمیل" />
-        <TextInput className="mb-1 w-full" type="password" label="رمز عبور" />
-        <Checkbox className="mb-4" label="قوانین و مقررات را می پذیرم." />
-        <Button type="submit" className="w-full" onClick={handleGoToLogin}>
-          ثبت نام
-        </Button>
-      </form>
+        </h1>
+        <form onSubmit={handleSubmit(handleSubmitForm)} className="mt-7">
+          <TextInput
+            type="text"
+            label="نام کامل"
+            className="w-full"
+            register={register("name", {
+              required: "این فیلد الزامی است!",
+            })}
+            name="name"
+            hint={errors.name?.message}
+            containerClassName="mb-4"
+          />
+          <TextInput
+            type="text"
+            label="ایمیل"
+            className="w-full"
+            register={register("email", {
+              required: "این فیلد الزامی است!",
+              pattern: {
+                value: /^\S+@\S+\.\S+$/,
+                message: "ایمیل به درستی وارد نشده است!",
+              },
+            })}
+            name="email"
+            hint={errors.email?.message}
+            containerClassName="mb-4"
+          />
+          <TextInput
+            type="password"
+            label="رمز عبور"
+            className="w-full"
+            register={register("password", {
+              required: "این فیلد الزامی است!",
+            })}
+            name="password"
+            hint={errors.password?.message}
+            containerClassName="mb-4"
+          />
+          <Checkbox
+            className="mb-4"
+            label="قوانین و مقررات را می پذیرم."
+            register={register("isAccepted", {
+              required: "این فیلد الزامی است!",
+            })}
+            hint={errors.isAccepted?.message}
+          />
+          <Button className="w-full" type="submit">
+            ثبت نام
+          </Button>
+        </form>
+      </Card>
     </div>
   );
-};
+}
 
 export default Register;

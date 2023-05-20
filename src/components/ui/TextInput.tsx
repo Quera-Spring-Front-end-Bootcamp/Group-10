@@ -28,9 +28,7 @@ function TextInput({
       className={`flex flex-col justify-center items-start ${containerClassName}`}
     >
       {label && (
-        <label className="text-[14px] font-normal text-black pb-2">
-          {label}
-        </label>
+        <label className="text-[14px] font-normal text-black">{label}</label>
       )}
       <input
         {...register}

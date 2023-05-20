@@ -1,11 +1,17 @@
 import { Outlet } from "react-router-dom";
+import AnonymousHeader from "../components/AnonymousHeader";
+import anonymousLayoutBackgroundImage from "../assets/anonymousLayoutBackground.svg";
 
 const AnonymousLayout = () => {
   return (
-    <>
-      <h1>AnonymousLayout</h1>
+    <div className="flex flex-col h-screen">
+      <AnonymousHeader />
       <Outlet />
-    </>
+      <img
+        src={anonymousLayoutBackgroundImage}
+        className="fixed bottom-0  w-screen"
+      />
+    </div>
   );
 };
 

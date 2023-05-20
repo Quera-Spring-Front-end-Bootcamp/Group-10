@@ -18,7 +18,8 @@ const Login = () => {
   const onSubmit: SubmitHandler<TextInput> = (data) => console.log("enter", data);
 
   return (
-    <div style={{ width: "517px", height: "429px", border: "2px solid black" }}>
+    <div>
+      {/* if design for card style={{ width: "517px", height: "429px", border: "2px solid black" }} */}
       <div className="container mx-auto p-6">
         <div className="flex">
           <h1 className="font-semibold text-[32px]/[49.57px] text-right tracking-tight">

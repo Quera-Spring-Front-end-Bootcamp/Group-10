@@ -11,18 +11,6 @@ export default {
         success: "#4CAF50",
         gray: "#AAAAAA",
       },
-      width:{
-        '469': '469px'
-      },
-      borderRadius:{
-        card : '20px'
-      },
-      minWidth:{
-        card402 : '402px'
-      },
-      maxWidth:{
-        card517: '517px'
-      }
     },
   },
   plugins: [],

@@ -1,57 +1,74 @@
 import Link from "../components/ui/QLink";
 import Button from "../components/ui/Button";
 import TextInput from "../components/ui/TextInput";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
+import Card from "../components/ui/Card";
 
-type TextInput = {
+type LoginFormData = {
   email: string;
   password: string;
 };
 
-const Login = () => {
+function Login() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
-  } = useForm<TextInput>();
-  const onSubmit: SubmitHandler<TextInput> = (data) => console.log("enter", data);
+  } = useForm<LoginFormData>();
+
+  function handleSubmitForm(data: LoginFormData) {
+    console.log(data);
+  }
 
   return (
-    <div>
-      {/* if design for card style={{ width: "517px", height: "429px", border: "2px solid black" }} */}
-      <div className="container mx-auto p-6">
-        <div className="flex">
-          <h1 className="font-semibold text-[32px]/[49.57px] text-right tracking-tight">
-            به کوئرا تسک منیجر خوش برگشتی :){" "}
-          </h1>
-        </div>
-        <form action="POST">
-          <div className="flex flex-col mt-[29px]">
-            <TextInput label="ایمیل" className="w-full" {...register("email")} />
-          </div>
-          <div className="flex flex-col pt-5 mb-8">
-            <TextInput label="رمز عبور" className="w-full" {...register("password")} />
-            <Link to={""} className="font-semibold text-xs/[18.59px] text-primary mt-2">
-              رمز عبور خود را فراموش کردید؟
-            </Link>
-          </div>
-          <Button className="w-full" onClick={handleSubmit(onSubmit)}>
-            <Link to="/register" className="text-white">
-              ورود
-            </Link>
+    <div className="w-screen h-screen flex justify-center items-center">
+      <Card>
+        <h1 className="font-semibold text-lg sm:text-xl md:text-2xl lg:text-3xl">
+          به کوئرا تسک منیجر خوش برگشتی :)
+        </h1>
+        <form onSubmit={handleSubmit(handleSubmitForm)} className="my-7">
+          <TextInput
+            label="ایمیل"
+            className="w-full"
+            register={register("email", {
+              required: "این فیلد الزامی است!",
+              pattern: {
+                value: /^\S+@\S+\.\S+$/,
+                message: "ایمیل به درستی وارد نشده است!",
+              },
+            })}
+            name="email"
+            hint={errors.email?.message}
+          />
+          <TextInput
+            label="رمز عبور"
+            className="w-full"
+            containerClassName="mt-4"
+            name="password"
+            register={register("password", {
+              required: "این فیلد الزامی است!",
+            })}
+            hint={errors.password?.message}
+          />
+          <Link
+            to="/forget-password"
+            className="font-semibold text-xs text-primary mt-2 mb-4 block"
+          >
+            رمز عبور خود را فراموش کردید؟
+          </Link>
+          <Button className="w-full" type="submit">
+            ورود
           </Button>
         </form>
-        <div className="flex justify-center mt-5">
-          <p>ثبت نام نکرده ای؟</p>
-          <Link to={""} className="font-semibold text-base/[25.07px] text-primary mr-[8px]">
+        <div className="flex justify-center mt-5 gap-2">
+          <span>ثبت نام نکرده ای؟</span>
+          <Link to="/register" className="font-semibold text-primary">
             ثبت نام
           </Link>
         </div>
-      </div>
-      {/* end of container design */}
+      </Card>
     </div>
   );
-};
+}
 
 export default Login;

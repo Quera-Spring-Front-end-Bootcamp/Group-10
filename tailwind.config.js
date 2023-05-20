@@ -10,6 +10,9 @@ export default {
         success: "#4CAF50",
         gray: "#AAAAAA",
       },
+      width:{
+        '469': '469px'
+      }
     },
   },
   plugins: [],

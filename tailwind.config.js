@@ -12,6 +12,15 @@ export default {
       },
       width:{
         '469': '469px'
+      },
+      borderRadius:{
+        card : '20px'
+      },
+      minWidth:{
+        card402 : '402px'
+      },
+      maxWidth:{
+        card517: '517px'
       }
     },
   },

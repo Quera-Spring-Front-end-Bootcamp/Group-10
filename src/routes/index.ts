@@ -47,7 +47,7 @@ export const routes: LayoutType[] = [
         name: "forgetPassword",
         title: "ForgetPassword page",
         component: Register,
-        path: "/forgetPassword",
+        path: "/forget-password",
         isPublic: true,
       },
       {

@@ -9,7 +9,7 @@ const AnonymousLayout = () => {
       <Outlet />
       <img
         src={anonymousLayoutBackgroundImage}
-        className="fixed bottom-0  w-screen"
+        className="fixed bottom-0  w-screen -z-50"
       />
     </div>
   );

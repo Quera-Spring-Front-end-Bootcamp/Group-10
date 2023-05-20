@@ -35,6 +35,13 @@ export const routes: LayoutType[] = [
         name: "login",
         title: "Login page",
         component: Login,
+        path: "/",
+        isPublic: true,
+      },
+      {
+        name: "login",
+        title: "Login page",
+        component: Login,
         path: "/login",
         isPublic: true,
       },

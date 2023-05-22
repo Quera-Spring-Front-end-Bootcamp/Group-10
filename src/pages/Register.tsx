@@ -17,7 +17,9 @@ function Register() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<RegisterFormData>();
+  } = useForm<RegisterFormData>({
+    mode: "onTouched",
+  });
 
   function handleSubmitForm(data: RegisterFormData) {
     console.log(data);

@@ -1,11 +1,14 @@
 import React, { PropsWithChildren } from "react";
+import exitIcon  from '../icons/exit.svg'
+import backIcon from '../icons/back.svg'
+import IconButton from "./IconButton";
 
 interface Props
   extends PropsWithChildren<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>> {
   title?: string;
   shadow?: boolean;
-  exit?: boolean;
-  back?: boolean;
+  exit?: () => void;
+  back?: () => void;
 }
 
 function Card({ title, exit, back, shadow = true, children, className, ...props }: Props) {
@@ -19,12 +22,12 @@ function Card({ title, exit, back, shadow = true, children, className, ...props 
       {(title || exit || back) && (
         <div>
           {
-            <div className="grid grid-flow-col  ">
-              <div className="w-2 h-2 cursor-pointer text-gray">{exit ? "x" : ""}</div>
+            <div className="grid grid-flow-col">
+              <div className="flex justify-start cursor-pointer text-gray">{exit ? <IconButton src={exitIcon}/> : ""}</div>
               <div className="justify-self-center font-semibold text-base sm:text-xl md:text-2xl lg:text-3xl">
                 {title && <p>{title}</p>}
               </div>
-              <div className="justify-items-end text-left cursor-pointer text-gray">{back ? "->" : ""}</div>
+              <div className="flex justify-end text-left cursor-pointer text-gray">{back ? <IconButton src={backIcon}/> : ""}</div>
             </div>
           }
         </div>

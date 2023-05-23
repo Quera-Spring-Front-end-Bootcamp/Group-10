@@ -1,9 +1,10 @@
 import { Outlet } from "react-router-dom";
+import UserSettingsDrawer from "../components/UserSettingsDrawer";
 
 function UserSettingsLayout() {
   return (
-    <div>
-      <h1>user settings layout</h1>
+    <div className="bg-gray-light w-screen h-screen flex flex-row">
+      <UserSettingsDrawer />
       <Outlet />
     </div>
   );

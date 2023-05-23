@@ -10,6 +10,8 @@ export default {
         error: "#FF5722",
         success: "#4CAF50",
         gray: "#AAAAAA",
+        "gray-light": "#FAFBFC",
+        "gray-dark": "#323232",
       },
     },
   },

@@ -1,6 +1,6 @@
 import { SVGProps } from "react";
 
-function BackIcon(props: SVGProps<SVGSVGElement>) {
+function CheckProfileIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       width={24}
@@ -10,14 +10,22 @@ function BackIcon(props: SVGProps<SVGSVGElement>) {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <path
-        d="M4.48047 12.48H19.4705"
+      <circle
+        cx={12.0008}
+        cy={8.7486}
+        r={4.25177}
         strokeWidth={1.5}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
-        d="M13.4834 6.48804L19.5204 12.5L13.4834 18.512"
+        d="M3.99707 20.5036C3.99707 18.0175 6.01291 16.0017 8.49895 16.0017H11.083"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M19.0031 17.4402L16.0019 20.4414L14.2021 18.6407"
         strokeWidth={1.5}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -25,4 +33,4 @@ function BackIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
-export default BackIcon;
+export default CheckProfileIcon;

@@ -14,7 +14,9 @@ function Login() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginFormData>();
+  } = useForm<LoginFormData>({
+    mode: "onTouched",
+  });
 
   function handleSubmitForm(data: LoginFormData) {
     console.log(data);

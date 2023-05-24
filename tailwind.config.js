@@ -10,6 +10,7 @@ export default {
         error: "#FF5722",
         success: "#4CAF50",
         gray: "#AAAAAA",
+        greenSvg:"#80C959",
       },
     },
   },

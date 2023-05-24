@@ -2,10 +2,14 @@ import React, { PropsWithChildren, useState } from "react";
 import { Switch } from "@headlessui/react";
 
 interface Props
-  extends PropsWithChildren<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>> {}
+  extends PropsWithChildren<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>> {
+    enable ?: boolean;
+    enable_title?: string;
+    disenable_title?: string;
+  }
 
-function SwitchButton({ children, className, ...props }: Props) {
-  const [enabled, setEnabled] = useState(false);
+function SwitchButton({ enable = false , enable_title = 'حالت روز' , disenable_title = 'حالت شب' ,  children, className, ...props }: Props) {
+  const [enabled, setEnabled] = useState(enable);
 
   return (
     <div className="flex py-16">
@@ -23,7 +27,7 @@ function SwitchButton({ children, className, ...props }: Props) {
             } ${enabled ? "bg-gray" : "bg-primary"} shadow-lg ring-0 transition-all duration-1000 ease-in-out`}
         />
       </Switch>
-      <p className="mx-3.5">حالت شب</p>
+      <p className="mx-3.5">{ enabled ? `${disenable_title}` : `${enable_title}` }</p>
     </div>
   );
 }

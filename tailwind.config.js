@@ -13,7 +13,6 @@ export default {
         "gray-light": "#FAFBFC",
         "gray-dark": "#323232",
         "blue-light": "#C5FFFF",
-        blacklow: "#3d3d3d",
       },
     },
   },

@@ -1,6 +1,6 @@
 import { SVGProps } from "react";
 
-function CloseIcon(props: SVGProps<SVGSVGElement>) {
+function ArrowLeftIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       width={24}
@@ -11,13 +11,13 @@ function CloseIcon(props: SVGProps<SVGSVGElement>) {
       {...props}
     >
       <path
-        d="M8 8.5L16 16.5"
+        d="M4.00977 12.4805H18.9998"
         strokeWidth={1.5}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
-        d="M16 8.5L8 16.5"
+        d="M10.013 6.48828L4.00195 12.5003L10.013 18.5123"
         strokeWidth={1.5}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -25,4 +25,4 @@ function CloseIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
-export default CloseIcon;
+export default ArrowLeftIcon;

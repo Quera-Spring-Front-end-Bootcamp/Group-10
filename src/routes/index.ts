@@ -9,6 +9,8 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import ForgetPassword from "../pages/ForgetPassword";
 import ForgetPasswordConfirm from "../pages/ForgetPasswordConfirm";
+import UI from "../pages/UI";
+import EmptyLayout from "../layouts/EmptyLayout";
 
 /* -------------------------------------------------------------------------- */
 /*                                    Types                                   */
@@ -71,6 +73,18 @@ export const routes: LayoutType[] = [
   {
     layout: MainLayout,
     routes: [],
+  },
+  {
+    layout: EmptyLayout,
+    routes: [
+      {
+        name: "ui",
+        title: "UI page",
+        component: UI,
+        path: "/ui",
+        isPublic: true,
+      },
+    ],
   },
 ];
 

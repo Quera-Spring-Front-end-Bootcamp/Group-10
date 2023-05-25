@@ -1,5 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
+
 import Button from "./ui/Button";
+import Logo from "./Logo";
 
 function AnonymousHeader() {
   const location = useLocation();
@@ -14,9 +16,7 @@ function AnonymousHeader() {
   }
   return (
     <header className="p-8 flex flex-row justify-between items-center fixed w-screen">
-      <span className="text-xl sm:text-2xl md:text-3xl xl:text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-        کوئرا تسک منیجر
-      </span>
+      <Logo />
       <div className="gap-2 flex flex-row items-center">
         <span className="hidden sm:block">
           {location.pathname === "/login"

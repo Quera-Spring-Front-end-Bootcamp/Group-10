@@ -1,6 +1,6 @@
 import { SVGProps } from "react";
 
-function CloseIcon(props: SVGProps<SVGSVGElement>) {
+function CheckProfileIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       width={24}
@@ -10,14 +10,22 @@ function CloseIcon(props: SVGProps<SVGSVGElement>) {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <path
-        d="M8 8.5L16 16.5"
+      <circle
+        cx={12.0008}
+        cy={8.7486}
+        r={4.25177}
         strokeWidth={1.5}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
-        d="M16 8.5L8 16.5"
+        d="M3.99707 20.5036C3.99707 18.0175 6.01291 16.0017 8.49895 16.0017H11.083"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M19.0031 17.4402L16.0019 20.4414L14.2021 18.6407"
         strokeWidth={1.5}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -25,4 +33,4 @@ function CloseIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
-export default CloseIcon;
+export default CheckProfileIcon;

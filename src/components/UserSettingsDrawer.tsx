@@ -4,7 +4,7 @@ import Logo from "./Logo";
 import Button from "./ui/Button";
 import ListItem, { ListItemType } from "./ListItem";
 import EditProfileIcon from "./icons/EditProfileIcon";
-import BackIcon from "./icons/BackIcon";
+import ArrowRightIcon from "./icons/ArrowRightIcon";
 import CheckProfileIcon from "./icons/CheckProfileIcon";
 import SettingsIcon from "./icons/SettingsIcon";
 
@@ -45,7 +45,7 @@ function UserSettingsDrawer() {
         <div className="mt-16">
           <Link to="/board">
             <Button className="flex gap-1">
-              <BackIcon className="stroke-white" />
+              <ArrowRightIcon className="stroke-white" />
               <span>بازگشت</span>
             </Button>
           </Link>

@@ -1,19 +1,13 @@
-import React, { PropsWithChildren } from "react";
+import React from "react";
 
-interface Props
-  extends PropsWithChildren<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>> {
-  Src?: any;
-  action?: () => void;
-}
-
-function IconButton({ Src , action , children, className, ...props }: Props) {
-    
-
-    return (
-    <div className="flex w-fit ">
-        <p onClick={action}>{<Src/>}</p>
-    </div>
-  )
+function IconButton({
+  children,
+  ...props
+}: React.DetailedHTMLProps<
+  React.ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
+>) {
+  return <button {...props}>{children}</button>;
 }
 
 export default IconButton;

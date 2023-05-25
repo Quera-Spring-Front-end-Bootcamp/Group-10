@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+
 import PlayIcon from "../icons/PlayIcon";
 import PauseIcon from "../icons/PauseIcon";
 import IconButton from "./IconButton";

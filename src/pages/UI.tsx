@@ -1,5 +1,11 @@
+import FileInput from "../components/ui/FileInput";
+
 function UI() {
-  return <div>UI</div>;
+  return (
+    <div>
+      <FileInput />
+    </div>
+  );
 }
 
 export default UI;

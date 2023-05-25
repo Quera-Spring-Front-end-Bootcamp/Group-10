@@ -2,7 +2,7 @@ import React, { PropsWithChildren } from "react";
 
 import IconButton from "./IconButton";
 import CloseIcon from "../icons/CloseIcon";
-import BackIcon from "../icons/BackIcon";
+import ArrowLeftIcon from "../icons/ArrowLeftIcon";
 
 interface Props
   extends PropsWithChildren<
@@ -52,7 +52,7 @@ function Card({
 
           {back ? (
             <IconButton
-              children={<BackIcon className="stroke-gray " />}
+              children={<ArrowLeftIcon className="stroke-gray " />}
               onClick={back}
             />
           ) : (

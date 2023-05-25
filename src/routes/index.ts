@@ -9,6 +9,12 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import ForgetPassword from "../pages/ForgetPassword";
 import ForgetPasswordConfirm from "../pages/ForgetPasswordConfirm";
+import UI from "../pages/UI";
+import EmptyLayout from "../layouts/EmptyLayout";
+import UserSettingsLayout from "../layouts/UserSettingsLayout";
+import Personal from "../pages/settings/Personal";
+import Account from "../pages/settings/Account";
+import Settings from "../pages/settings/Settings";
 
 /* -------------------------------------------------------------------------- */
 /*                                    Types                                   */
@@ -69,8 +75,46 @@ export const routes: LayoutType[] = [
     ],
   },
   {
+    layout: UserSettingsLayout,
+    routes: [
+      {
+        name: "user personal settings",
+        title: "اطلاعات فردی",
+        component: Personal,
+        path: "/user/personal",
+        isPublic: true,
+      },
+      {
+        name: "user account settings",
+        title: "اطلاعات حساب",
+        component: Account,
+        path: "/user/account",
+        isPublic: true,
+      },
+      {
+        name: "user app settings",
+        title: "تنظیمات سامانه",
+        component: Settings,
+        path: "/user/settings",
+        isPublic: true,
+      },
+    ],
+  },
+  {
     layout: MainLayout,
     routes: [],
+  },
+  {
+    layout: EmptyLayout,
+    routes: [
+      {
+        name: "ui",
+        title: "UI page",
+        component: UI,
+        path: "/ui",
+        isPublic: true,
+      },
+    ],
   },
 ];
 

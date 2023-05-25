@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from "react";
+
 import IconButton from "./IconButton";
 import CloseIcon from "../icons/CloseIcon";
-
 import ArrowLeftIcon from "../icons/ArrowLeftIcon";
 
 interface Props

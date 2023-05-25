@@ -1,6 +1,6 @@
 import { SVGProps } from "react";
 
-function BackIcon(props: SVGProps<SVGSVGElement>) {
+function ArrowRightIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       width={24}
@@ -25,4 +25,4 @@ function BackIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
-export default BackIcon;
+export default ArrowRightIcon;

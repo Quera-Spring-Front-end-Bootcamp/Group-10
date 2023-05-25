@@ -13,7 +13,7 @@ interface Props
   onClose: () => void;
 }
 
-export default function MyModal({ open, onClose, children }: Props) {
+function Modal({ open, onClose, children }: Props) {
   return (
     <Transition appear show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={onClose}>
@@ -48,3 +48,5 @@ export default function MyModal({ open, onClose, children }: Props) {
     </Transition>
   );
 }
+
+export default Modal;

@@ -13,8 +13,8 @@ interface Props
   > {
   title?: string;
   titleClassName?: string;
-  back?: () => void;
-  close?: () => void;
+  onBack?: () => void;
+  onClose?: () => void;
 }
 
 function Card({
@@ -22,8 +22,8 @@ function Card({
   titleClassName,
   className,
   children,
-  back,
-  close,
+  onBack,
+  onClose,
   ...props
 }: Props) {
   return (
@@ -31,12 +31,12 @@ function Card({
       {...props}
       className={`rounded-2xl bg-white m-2 max-w-[520px] p-6 ${className}`}
     >
-      {(title || close || back) && (
+      {(title || onClose || onBack) && (
         <div className="flex flex-row w-full justify-between">
-          {close ? (
+          {onClose ? (
             <IconButton
               children={<CloseIcon className="stroke-gray" />}
-              onClick={close}
+              onClick={onClose}
             />
           ) : (
             <div></div>
@@ -50,10 +50,10 @@ function Card({
             <div></div>
           )}
 
-          {back ? (
+          {onBack ? (
             <IconButton
               children={<ArrowLeftIcon className="stroke-gray " />}
-              onClick={back}
+              onClick={onBack}
             />
           ) : (
             <div></div>

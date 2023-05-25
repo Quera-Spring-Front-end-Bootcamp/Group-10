@@ -1,4 +1,3 @@
-import React, { PropsWithChildren, useState } from "react";
 import { Switch } from "@headlessui/react";
 
 interface Props {

@@ -6,7 +6,6 @@ type RegisterFormData = {
   email: string;
   username: string;
   password: number;
-  isAccepted: boolean;
 };
 
 function Account() {
@@ -29,11 +28,14 @@ function Account() {
       </h1>
       <form onSubmit={handleSubmit(handleSubmitForm)} className="mt-7 w-80">
         <TextInput
-          type="email"
           label="ایمیل"
           className="w-full"
           register={register("email", {
             required: "این فیلد الزامی است!",
+            pattern: {
+              value: /^\S+@\S+\.\S+$/,
+              message: "ایمیل به درستی وارد نشده است!",
+            },
           })}
           name="email"
           hint={errors.email?.message}

@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import TextInput from "./TextInput";
 import Button from "./Button";
+import FileInput from "./FileInput";
 
 type RegisterFormData = {
   name: string;
@@ -23,10 +24,11 @@ function PersonalInformation() {
   }
 
   return (
-    <div className="flex flex-col w-screen h-screen items-start justify-start pt-44 pr-12">
-      <h1 className="font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl">
+    <div className="flex flex-col w-screen h-screen items-start justify-start pt-28 pr-12">
+      <h1 className="font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl pb-8">
         اطلاعات فردی
       </h1>
+      <FileInput />
       <form onSubmit={handleSubmit(handleSubmitForm)} className="mt-7 w-80">
         <TextInput
           type="text"
@@ -62,7 +64,7 @@ function PersonalInformation() {
           hint={errors.tell?.message}
           containerClassName="mb-4"
         />
-        <Button className="w-full" type="submit">
+        <Button className="w-full mt-8" type="submit">
           ثبت تغییرات
         </Button>
       </form>

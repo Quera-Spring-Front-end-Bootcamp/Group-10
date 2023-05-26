@@ -1,7 +1,5 @@
-import PersonalInformation from "../components/ui/PersonalInformation";
-
 function UI() {
-  return <PersonalInformation />;
+  return <div>ui</div>;
 }
 
 export default UI;

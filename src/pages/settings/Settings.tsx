@@ -1,9 +1,11 @@
+import { useState } from "react";
 import TicIcon from "../../components/icons/TicIcon";
 import Button from "../../components/ui/Button";
 import ColorPalette from "../../components/ui/ColorPalette";
 import SwitchButton from "../../components/ui/SwitchButton";
 
 function Settings(): JSX.Element {
+  const [activeDarkMode, setActiveDarkMode] = useState(false);
   return (
     <div className="flex flex-col items-start justify-start pt-36 pr-12">
       <h1 className="font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl pb-4">
@@ -13,13 +15,13 @@ function Settings(): JSX.Element {
         <div className="flex flex-row justify-start items-end">
           <div className="flex flex-col">
             <p className="text-sm pb-2">انتخاب تم</p>
-            <div className="flex justify-center items-center w-10 h-10 bg-primary rounded-full">
-              <TicIcon />
-            </div>
+            <ColorPalette selected={1} />
           </div>
-          <ColorPalette />
         </div>
-        <SwitchButton />
+        <SwitchButton
+          enable={activeDarkMode}
+          setEnable={() => setActiveDarkMode(!activeDarkMode)}
+        />
         <Button className="w-full mt-1" type="button">
           ثبت تغییرات
         </Button>

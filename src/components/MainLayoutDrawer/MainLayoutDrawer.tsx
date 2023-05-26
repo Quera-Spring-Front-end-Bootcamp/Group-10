@@ -9,6 +9,7 @@ import CheckProfileIcon from "../icons/CheckProfileIcon";
 import SettingsIcon from "../icons/SettingsIcon";
 import PlusIcon from "../icons/PlusIcon";
 import SearchInput from "../SearchInput";
+import MainLayoutDrawerList from "./MainLayoutDrawerList";
 
 /* -------------------------------------------------------------------------- */
 /*                                   Const                                    */
@@ -54,6 +55,9 @@ function MainLayoutDrawer() {
           <PlusIcon className="stroke-black" />
           <span className="text-black text-sm">ساخت اسپیس جدید</span>
         </Button>
+        <div>
+          <MainLayoutDrawerList />
+        </div>
       </div>
     </div>
   );

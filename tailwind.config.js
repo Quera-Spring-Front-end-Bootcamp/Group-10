@@ -10,6 +10,7 @@ export default {
         error: "#FF5722",
         success: "#4CAF50",
         gray: "#AAAAAA",
+        lightGray: "#F0F1F3",
         "gray-light": "#FAFBFC",
         "gray-dark": "#323232",
         "blue-light": "#C5FFFF",

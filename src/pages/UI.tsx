@@ -1,5 +1,11 @@
+import PersonalInformation from "../components/ui/PersonalInformation";
+
 function UI() {
-  return <div>UI</div>;
+  return (
+    <div className="w-screen">
+      <PersonalInformation />
+    </div>
+  );
 }
 
 export default UI;

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import TicIcon from "../../components/icons/TicIcon";
+
 import Button from "../../components/ui/Button";
 import ColorPalette from "../../components/ui/ColorPalette";
 import SwitchButton from "../../components/ui/SwitchButton";

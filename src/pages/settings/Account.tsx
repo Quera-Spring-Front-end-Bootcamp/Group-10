@@ -23,7 +23,7 @@ function Account() {
   }
 
   return (
-    <div className="flex flex-col items-start justify-start pt-40 pr-14">
+    <div className="flex flex-col items-start justify-start pt-24 pr-14">
       <h1 className="font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl pb-8">
         اطلاعات حساب
       </h1>
@@ -39,18 +39,26 @@ function Account() {
           hint={errors.email?.message}
           containerClassName="mb-4"
         />
-        <TextInput
-          type="password"
-          label="رمز عبور"
-          className="w-full"
-          register={register("password", {
-            min: 8,
-            required: "این فیلد الزامی است!",
-          })}
-          name="password"
-          hint={errors.password?.message}
-          containerClassName="mb-4"
-        />
+        <div className="relative">
+          <TextInput
+            type="password"
+            label="رمز عبور"
+            className="w-full"
+            register={register("password", {
+              min: 8,
+              required: "این فیلد الزامی است!",
+            })}
+            name="password"
+            hint={errors.password?.message}
+            containerClassName="mb-4"
+          />
+          <Button
+            type="button"
+            className="absolute top-5 left-0 h-11 rounded-none rounded-l-lg"
+          >
+            احراز هویت
+          </Button>
+        </div>
         <TextInput
           type="text"
           label="نام کاربری"

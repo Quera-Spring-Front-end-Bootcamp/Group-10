@@ -7,7 +7,7 @@ import SwitchButton from "../../components/ui/SwitchButton";
 function Settings(): JSX.Element {
   const [activeDarkMode, setActiveDarkMode] = useState(false);
   return (
-    <div className="flex flex-col items-start justify-start pt-36 pr-12">
+    <div className="flex flex-col items-start justify-start pt-24 pr-14">
       <h1 className="font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl pb-4">
         تنظیمات
       </h1>

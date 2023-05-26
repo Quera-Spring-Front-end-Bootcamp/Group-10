@@ -8,7 +8,9 @@ interface Props
     HTMLInputElement
   > {
   hint?: string;
+  buttonClassName?: string;
   containerClassName?: string;
+  onClick?: () => void;
   register?: {
     name: string;
     options?: RegisterOptions | undefined;
@@ -18,12 +20,14 @@ interface Props
 function InputButton({
   hint,
   className,
+  buttonClassName,
   containerClassName,
+  onClick,
   register,
   ...props
 }: Props) {
   return (
-    <div
+    <form
       className={`flex flex-col justify-center items-start relative ${containerClassName}`}
     >
       <input
@@ -35,13 +39,14 @@ function InputButton({
         {...props}
       />
       <Button
+        onClick={onClick}
         type="submit"
-        className="absolute top-0 left-0 w-20 h-11 rounded-none rounded-l-lg bg-primary"
+        className={`absolute top-0 left-0 w-20 h-11 rounded-none rounded-l-lg bg-primary ${buttonClassName}`}
       >
         ارسال
       </Button>
       {hint && <span className="text-xs mt-1 text-error">{hint}</span>}
-    </div>
+    </form>
   );
 }
 

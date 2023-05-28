@@ -47,7 +47,7 @@ function MainLayoutDrawer() {
         <div>
           <Logo />
         </div>
-        <div className="mt-8 font-medium">
+        <div className="mt-8 font-semibold">
           <h4>ورک اسپیس ها</h4>
         </div>
         <div className="mt-3">

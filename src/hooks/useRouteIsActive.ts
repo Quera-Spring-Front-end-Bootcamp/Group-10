@@ -7,7 +7,9 @@ import { useLocation } from "react-router-dom";
  */
 function useRouteIsActive(url: string): boolean {
   const { pathname } = useLocation();
-  return url === pathname ? true : false;
+  console.log(pathname, url, pathname.includes(url));
+
+  return pathname.includes(url);
 }
 
 export default useRouteIsActive;

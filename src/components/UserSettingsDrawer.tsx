@@ -37,13 +37,13 @@ const listItems: ListItemType[] = [
 
 function UserSettingsDrawer() {
   return (
-    <div className=" border-l-[1px] border-[#AAAAAA] w-80 p-8">
+    <div className=" border-l-[1px] border-[#AAAAAA] w-96 p-8">
       <div className="flex flex-col">
         <div>
           <Logo />
         </div>
         <div className="mt-16">
-          <Link to="/board">
+          <Link to="/projects">
             <Button className="flex gap-1">
               <ArrowRightIcon className="stroke-white" />
               <span>بازگشت</span>

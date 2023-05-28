@@ -15,6 +15,10 @@ import UserSettingsLayout from "../layouts/UserSettingsLayout";
 import Personal from "../pages/settings/Personal";
 import Account from "../pages/settings/Account";
 import Settings from "../pages/settings/Settings";
+import Project from "../pages/Project";
+import ProjectListView from "../pages/ProjectListView";
+import ProjectColumnView from "../pages/ProjectColumnView";
+import ProjectCalendarView from "../pages/ProjectCalendarView";
 
 /* -------------------------------------------------------------------------- */
 /*                                    Types                                   */
@@ -102,7 +106,43 @@ export const routes: LayoutType[] = [
   },
   {
     layout: MainLayout,
-    routes: [],
+    routes: [
+      {
+        name: "project",
+        title: "Project page",
+        component: Project,
+        path: "/projects",
+        isPublic: true,
+      },
+      {
+        name: "project",
+        title: "Project page",
+        component: Project,
+        path: "/projects/:id",
+        isPublic: true,
+      },
+      {
+        name: "project",
+        title: "Project page",
+        component: ProjectListView,
+        path: "/projects/:id/list",
+        isPublic: true,
+      },
+      {
+        name: "project",
+        title: "Project page",
+        component: ProjectColumnView,
+        path: "/projects/:id/column",
+        isPublic: true,
+      },
+      {
+        name: "project",
+        title: "Project page",
+        component: ProjectCalendarView,
+        path: "/projects/:id/calendar",
+        isPublic: true,
+      },
+    ],
   },
   {
     layout: EmptyLayout,

@@ -43,7 +43,7 @@ function UserSettingsDrawer() {
           <Logo />
         </div>
         <div className="mt-16">
-          <Link to="/board">
+          <Link to="/projects">
             <Button className="flex gap-1">
               <ArrowRightIcon className="stroke-white" />
               <span>بازگشت</span>

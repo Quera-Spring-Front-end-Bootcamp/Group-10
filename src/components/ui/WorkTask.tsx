@@ -1,22 +1,14 @@
-import React, { useState, PropsWithChildren } from "react";
-import Modal from "./Modal";
-import Button from "./Button";
-import AddIcon from "../icons/AddIcon";
-import TextInput from "./TextInput";
+import { useState } from "react";
+
 import Card from "./Card";
 import WorkSpaceColor from "./WorkSpaceColor";
 import Review from "./Review";
-import NewTaskInput from "./NewTaskInput";
+import NewTaskInput, { NewTaskStepOneFormDataType } from "./NewTaskInput";
 
-interface Props
-  extends PropsWithChildren<
-    React.DetailedHTMLProps<
-      React.HTMLAttributes<HTMLDivElement>,
-      HTMLDivElement
-    >
-  > {
-  title?: any;
-}
+type Props = {
+  onClose?: () => void;
+  onComplete?: () => void;
+};
 
 const taskPanel = [
   { id: 1, title: "ساختن ورک اسپیس جدید" },
@@ -24,115 +16,79 @@ const taskPanel = [
   { id: 3, title: "مرور اطلاعات" },
 ];
 
-function WorkTask({ title = taskPanel, className, children, ...props }: Props) {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [currentCard, setCurrentCard] = useState(1);
+function WorkTask({ onComplete, onClose }: Props) {
+  const [step, setStep] = useState(1);
 
   const [name, setName] = useState("");
   const [color, setColor] = useState("");
-  const [member, setMember] = useState("");
 
-  const close = () => {
-    setModalOpen(!modalOpen);
-    setCurrentCard(1);
+  function handleClose() {
+    setStep(1);
     setName("");
     setColor("");
-    setMember("");
-  };
+    if (onClose) {
+      onClose();
+    }
+  }
 
-  const handelName = (Entername: string) => {
-    setName(Entername);
-  };
+  function handleBackClick() {
+    if (step > 1) {
+      setStep(step - 1);
+    } else {
+      handleClose();
+    }
+  }
+
+  function handleSubmitStepOne(data: NewTaskStepOneFormDataType) {
+    setName(data.name);
+    setStep(2);
+  }
+
+  function handleSubmitStepTwo(data: string) {
+    setColor(data);
+    setStep(3);
+  }
+  function handleSubmitStepThree() {
+    if (onComplete) {
+      onComplete();
+    }
+  }
 
   return (
-    <>
-      <Button
-        className={`flex justify-center items-center w-full !bg-[#D3D3D3]`}
-        onClick={() => setModalOpen(!modalOpen)}
+    <div className="w-[510px]">
+      <Card
+        close={close}
+        back={handleBackClick}
+        title={taskPanel[step - 1].title}
+        className="m-0"
       >
-        <AddIcon className={`stroke-black`} />
-        <p className="text-black mr-2">ساختن اسپیس جدید</p>
-      </Button>
-
-      <Modal
-        open={modalOpen}
-        onClose={() => {
-          console.log("close");
-        }}
-      >
-        <div className="w-[505px]">
-          <div className="flex transition-all duration-700 ease-in-out">
-            {taskPanel.map(({ id, title }) => (
-              <Card
-                close={close}
-                back={
-                  currentCard === 1
-                    ? undefined
-                    : () => setCurrentCard((current) => current - 1)
-                }
-                key={id}
-                title={`${title}`}
-                className={`${currentCard === id ? "z-10" : "-z-10"} ${
-                  currentCard === id ? "" : "hidden"
-                } w-full m-0`}
-              >
-                <div className={`mt-[40px] flex justify-start px-1 `}>
-                  {currentCard === 1 && (
-                    <NewTaskInput
-                      setName={handelName}
-                      action={() => {
-                        setCurrentCard((s) => s + 1);
-                      }}
-                    />
-                  )}
-                  {currentCard === 2 && (
-                    <WorkSpaceColor
-                      name={name}
-                      onSelect={(e) => setColor(e)}
-                      action={() => setCurrentCard((s) => s + 1)}
-                    />
-                  )}
-                  {currentCard === 3 && (
-                    <Review
-                      name={`${name}`}
-                      color={`${color}`}
-                      action={() =>
-                        currentCard !== taskPanel.length
-                          ? setCurrentCard((s) => s + 1)
-                          : close()
-                      }
-                    />
-                  )}
-                </div>
-              </Card>
-            ))}
-          </div>
-          <div className="flex justify-center items-end flex-row-reverse">
-            {
-              <span
-                className={`w-2 h-2 mt-[40px] mx-2 rounded-full ${
-                  currentCard === 1 ? "bg-white" : "bg-[#8A8989]"
-                }`}
-              ></span>
-            }
-            {
-              <span
-                className={`w-2 h-2 mt-[40px] mx-2 rounded-full ${
-                  currentCard === 2 ? "bg-white" : "bg-[#8A8989]"
-                }`}
-              ></span>
-            }
-            {
-              <span
-                className={`w-2 h-2 mt-[40px] mx-2 rounded-full ${
-                  currentCard === 3 ? "bg-white" : "bg-[#8A8989]"
-                }`}
-              ></span>
-            }
-          </div>
+        <div className="mt-[40px] flex justify-start px-1">
+          {step === 1 && <NewTaskInput onSubmit={handleSubmitStepOne} />}
+          {step === 2 && (
+            <WorkSpaceColor title={name} onSubmit={handleSubmitStepTwo} />
+          )}
+          {step === 3 && (
+            <Review
+              name={`${name}`}
+              color={`${color}`}
+              onSubmit={handleSubmitStepThree}
+            />
+          )}
         </div>
-      </Modal>
-    </>
+      </Card>
+      <div className="flex justify-center items-end flex-row-reverse">
+        {taskPanel.map((item, index) => {
+          return (
+            <span
+              key={item.id}
+              className={`w-2 h-2 mt-[40px] mx-2 rounded-full ${
+                step === index + 1 ? "bg-white" : "bg-[#8A8989]"
+              }`}
+            />
+          );
+        })}
+      </div>
+    </div>
   );
 }
 

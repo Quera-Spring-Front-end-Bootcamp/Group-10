@@ -1,20 +1,16 @@
-import React, { PropsWithChildren } from "react";
-import ForbiddenIcon from "../icons/ForbiddenIcon";
 import Button from "./Button";
 import Avatar from "./Avatar";
 
-interface Props
-  extends PropsWithChildren<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>> {
+type Props = {
   name?: string;
   color?: string;
-  member?: string;
-  action ?: () => void;
-}
+  onSubmit?: () => void;
+};
 
-function Review({ name, color, member , action , className, children, ...props }: Props) {
+function Review({ name, color, onSubmit }: Props) {
   return (
     <div className="w-full">
-      <div className="flex flex-col w-full gap-4 p-2 border border-gray rounded-md p-5">
+      <div className="flex flex-col w-full gap-4 border border-gray rounded-md p-5">
         <div className="flex justify-between items-center">
           <h3 className="font-semibold">نام ورک اسپیس</h3>
           <p>{name}</p>
@@ -25,10 +21,12 @@ function Review({ name, color, member , action , className, children, ...props }
         </div>
         <div className="flex justify-between items-center">
           <h3 className="font-semibold">اعضا</h3>
-          <Avatar/>
+          <Avatar />
         </div>
       </div>
-      <Button onClick={action} className="w-11/12 mt-[60px]">ساختن ورک اسپیس</Button>
+      <Button onClick={onSubmit} className="w-full mt-4 mx-auto">
+        ساختن ورک اسپیس
+      </Button>
     </div>
   );
 }

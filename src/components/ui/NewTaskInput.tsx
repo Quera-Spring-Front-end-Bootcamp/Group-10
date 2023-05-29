@@ -1,34 +1,39 @@
-import React, { useState, PropsWithChildren } from "react";
 import TextInput from "./TextInput";
 import Button from "./Button";
-import { string } from "yup";
+import { useForm } from "react-hook-form";
 
-interface Props
-  extends PropsWithChildren<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>> {
-    setName?: (name : string) => void
-    action?: () => void;
-}
+export type NewTaskStepOneFormDataType = {
+  name: string;
+};
 
-function NewTaskInput({ action , setName , className, children, ...props }: Props) {
-//   const [name, setName] = useState("");
-  const [flag , setFlag] = useState(true)
+type NewTaskInputProps = {
+  onSubmit: (data: NewTaskStepOneFormDataType) => void;
+};
+function NewTaskInput({ onSubmit }: NewTaskInputProps) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<NewTaskStepOneFormDataType>({
+    mode: "onTouched",
+  });
 
   return (
-    <div className="w-full">
+    <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
       <TextInput
-        onChange={(e) => {
-          setName(e?.target.value);
-          (e.target.value === ''? setFlag(true):setFlag(false))
-        }}
         label="نام ورک اسپیس"
         containerClassName="w-full"
         className={`w-full mt-2`}
+        register={register("name", {
+          required: "این فیلد الزامی است!",
+        })}
+        hint={errors.name?.message}
       />
 
-      <Button disabled={flag} onClick={action}  className="w-full mt-[60px]">
+      <Button className="w-full mt-[60px]" type="submit">
         ادامه
       </Button>
-    </div>
+    </form>
   );
 }
 

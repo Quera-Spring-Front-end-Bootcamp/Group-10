@@ -1,6 +1,6 @@
 import { SVGProps } from "react";
 
-function SVGComponent(props: SVGProps<SVGSVGElement>) {
+function ForbiddenIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       width={15}
@@ -15,4 +15,4 @@ function SVGComponent(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
-export default SVGComponent;
+export default ForbiddenIcon;

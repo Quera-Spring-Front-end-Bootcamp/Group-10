@@ -1,6 +1,6 @@
 import { SVGProps } from "react";
 
-function SVGComponent(props: SVGProps<SVGSVGElement>) {
+function AddIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       width={25}
@@ -33,4 +33,4 @@ function SVGComponent(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
-export default SVGComponent;
+export default AddIcon;

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import SelectIcon from "../icons/SelectIcon";
 import Forbidden from "../icons/ForbiddenIcon";
+import Button from "./Button";
 
 interface Color {
   id: number;
@@ -10,6 +11,8 @@ interface Color {
 interface Props {
   selected?: number;
   onSelect?: (selected: string) => void;
+  action?: () => void;
+  name?: string;
 }
 
 const colors: Color[] = [
@@ -39,7 +42,13 @@ const colors: Color[] = [
   { id: 24, colorHEX: "bg-[#7FA1D1]" },
 ];
 
-function WorkSpaceColor({ selected = 1, onSelect }: Props) {
+const splitName: (string) => string = (name: string) => {
+  const word = [name.split(" ")];
+  let char = word[0][0].charAt(0) + ' ' + word[0][word[0].length - 1].charAt(0)
+  return char
+};
+
+function WorkSpaceColor({ selected = 1, onSelect, name, action }: Props) {
   const [select, setSelect] = useState(selected);
 
   function activeColor(id: number) {
@@ -47,41 +56,46 @@ function WorkSpaceColor({ selected = 1, onSelect }: Props) {
   }
 
   return (
-    <div className="flex items-center gap-3">
-      <div className="">
-        <div
-          className={`w-[75px] h-[75px] flex justify-center items-center text-white text-[24px] rounded-md ${
-            colors[select - 1].colorHEX ? colors[select - 1].colorHEX : "bg-[#7D828C]"
-          }`}
-        >
-          ت ط
+    <div className="w-full">
+      <div className="flex items-center gap-3">
+        <div className="">
+          <div
+            className={`w-[75px] h-[75px] flex justify-center items-center text-white text-[24px] rounded-md ${
+              colors[select - 1].colorHEX ? colors[select - 1].colorHEX : "bg-[#7D828C]"
+            }`}
+          >
+            {splitName(name)}
+          </div>
         </div>
-      </div>
-      <div className="gap-4">
-        <h3 className="text-right mb-4">رنگ ورک اسپیس</h3>
-        <div className="grid grid-cols-12 flex-wrap gap-3">
-          {colors.map((color) => (
-            <button
-              key={color.id}
-              className={`flex justify-center items-center cursor-pointer rounded-sm transition-all duration-500 ease-in-out 
+        <div className="gap-4">
+          <h3 className="text-right mb-4">رنگ ورک اسپیس</h3>
+          <div className="grid grid-cols-12 flex-wrap gap-3">
+            {colors.map((color) => (
+              <button
+                key={color.id}
+                className={`flex justify-center items-center cursor-pointer rounded-sm transition-all duration-500 ease-in-out 
           ${select === color.id ? "w-6 h-6" : "w-4 h-4"}
           ${color.colorHEX === "bg" ? "" : color.colorHEX}`}
-              onClick={() => {
-                color.id !== 1 && activeColor(color.id);
-                if (onSelect) {
-                  onSelect(color.colorHEX);
-                }
-              }}
-            >
-              {color.colorHEX === "" ? (
-                <Forbidden className="stroke-black" />
-              ) : (
-                select === color.id && <SelectIcon className="stroke-white" />
-              )}
-            </button>
-          ))}
+                onClick={() => {
+                  color.id !== 1 && activeColor(color.id);
+                  if (onSelect) {
+                    onSelect(color.colorHEX);
+                  }
+                }}
+              >
+                {color.colorHEX === "" ? (
+                  <Forbidden className="stroke-black" />
+                ) : (
+                  select === color.id && <SelectIcon className="stroke-white" />
+                )}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
+      <Button onClick={action} className="w-full mt-[60px]">
+        ادامه
+      </Button>
     </div>
   );
 }

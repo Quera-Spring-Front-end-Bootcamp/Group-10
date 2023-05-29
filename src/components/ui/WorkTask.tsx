@@ -6,6 +6,7 @@ import TextInput from "./TextInput";
 import Card from "./Card";
 import WorkSpaceColor from "./WorkSpaceColor";
 import Review from "./Review";
+import NewTaskInput from "./NewTaskInput";
 
 interface Props
   extends PropsWithChildren<
@@ -31,6 +32,18 @@ function WorkTask({ title = taskPanel, className, children, ...props }: Props) {
   const [color, setColor] = useState("");
   const [member, setMember] = useState("");
 
+  const close = () => {
+    setModalOpen(!modalOpen);
+    setCurrentCard(1);
+    setName("");
+    setColor("");
+    setMember("");
+  };
+
+  const handelName = (Entername: string) => {
+    setName(Entername);
+  };
+
   return (
     <>
       <Button
@@ -51,13 +64,7 @@ function WorkTask({ title = taskPanel, className, children, ...props }: Props) {
           <div className="flex transition-all duration-700 ease-in-out">
             {taskPanel.map(({ id, title }) => (
               <Card
-                close={() => {
-                  setModalOpen(!modalOpen);
-                  setCurrentCard(1);
-                  setName("");
-                  setColor("");
-                  setMember("");
-                }}
+                close={close}
                 back={
                   currentCard === 1
                     ? undefined
@@ -69,53 +76,59 @@ function WorkTask({ title = taskPanel, className, children, ...props }: Props) {
                   currentCard === id ? "" : "hidden"
                 } w-full m-0`}
               >
-                <div
-                  className={`mt-[40px] flex justify-start px-1 ${
-                    currentCard === taskPanel.length &&
-                    "border border-gray rounded-md p-5"
-                  }`}
-                >
+                <div className={`mt-[40px] flex justify-start px-1 `}>
                   {currentCard === 1 && (
-                    <TextInput
-                      onChange={(e) => {
-                        setName(e.target.value);
+                    <NewTaskInput
+                      setName={handelName}
+                      action={() => {
+                        setCurrentCard((s) => s + 1);
                       }}
-                      label="نام ورک اسپیس"
-                      containerClassName="w-full"
-                      className=" !w-full mt-2"
                     />
                   )}
                   {currentCard === 2 && (
-                    <WorkSpaceColor onSelect={(e) => setColor(e)} />
+                    <WorkSpaceColor
+                      name={name}
+                      onSelect={(e) => setColor(e)}
+                      action={() => setCurrentCard((s) => s + 1)}
+                    />
                   )}
                   {currentCard === 3 && (
-                    <Review name={`${name}`} color={`${color}`} />
+                    <Review
+                      name={`${name}`}
+                      color={`${color}`}
+                      action={() =>
+                        currentCard !== taskPanel.length
+                          ? setCurrentCard((s) => s + 1)
+                          : close()
+                      }
+                    />
                   )}
                 </div>
-                <Button
-                  className="w-11/12 mt-[60px]"
-                  onClick={() => {
-                    if (currentCard !== taskPanel.length) {
-                      setCurrentCard((s) => s + 1);
-                    }
-                  }}
-                >
-                  {currentCard === taskPanel.length
-                    ? "ساختن ورک اسپیس"
-                    : "ادامه"}
-                </Button>
               </Card>
             ))}
           </div>
           <div className="flex justify-center items-end flex-row-reverse">
-            {taskPanel.map(({ id }) => (
+            {
               <span
-                key={id}
                 className={`w-2 h-2 mt-[40px] mx-2 rounded-full ${
-                  currentCard === id ? "bg-white" : "bg-[#8A8989]"
+                  currentCard === 1 ? "bg-white" : "bg-[#8A8989]"
                 }`}
               ></span>
-            ))}
+            }
+            {
+              <span
+                className={`w-2 h-2 mt-[40px] mx-2 rounded-full ${
+                  currentCard === 2 ? "bg-white" : "bg-[#8A8989]"
+                }`}
+              ></span>
+            }
+            {
+              <span
+                className={`w-2 h-2 mt-[40px] mx-2 rounded-full ${
+                  currentCard === 3 ? "bg-white" : "bg-[#8A8989]"
+                }`}
+              ></span>
+            }
           </div>
         </div>
       </Modal>

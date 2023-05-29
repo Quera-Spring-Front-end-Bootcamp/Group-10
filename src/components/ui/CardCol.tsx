@@ -1,9 +1,11 @@
 import React, { PropsWithChildren } from "react";
 import TitleIcon from "../icons/TitleIcon";
+import DotMenuIcon from "../icons/DotMenuIcon";
 import Card from "./Card";
 import IconButton from "./IconButton";
 import AcceptIcon from "../icons/AcceptIcon";
 import { string } from "yup";
+import CheckMarkIcon from "../icons/CheckMarkIcon";
 
 type tag = { id: number; tagName: string; bg: string };
 
@@ -36,13 +38,10 @@ function CardCol({
   ...props
 }: Props) {
   return (
-    <Card
-      onClick={action}
-      className="w-[250px] rounded-[4px] !p-2 border cursor-pointer border-black group"
-    >
+    <Card onClick={action} className="w-[250px] rounded-[4px] !p-2 border cursor-pointer border-[#EFF0F0] shadow-[0px_2px_8px_#0000002e] group">
       <div className="flex justify-between items-center w-full">
         <div className="">
-          <h2>{label}</h2>
+          <h2 className="text-[10px]">{label}</h2>
         </div>
         <div className="flex justify-center items-center w-[24px] h-[24px] rounded-full bg-[#EAF562]">
           <p className="font-semibold text-[8px]">{username}</p>
@@ -73,8 +72,12 @@ function CardCol({
         ))}
       </div>
       <div className="flex justify-between items-center pt-[20px] px-[4px] pb-[10px] mt-[20px] border-t-[1px] border-[#BDC0C6] hidden group-hover:flex">
-        <AcceptIcon className="stroke-black" />
-        <TitleIcon className="stroke-black" />
+        <IconButton>
+          <CheckMarkIcon className="stroke-black" />
+        </IconButton>
+        <IconButton>
+          <DotMenuIcon />
+        </IconButton>
       </div>
     </Card>
   );

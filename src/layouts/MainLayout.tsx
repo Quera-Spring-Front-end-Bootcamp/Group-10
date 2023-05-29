@@ -14,7 +14,7 @@ const MainLayout = () => {
           <Outlet />
         </div>
       </div>
-      <Button className="fixed bottom-2 left-2 flex gap-1">
+      <Button className="fixed bottom-2 left-2 flex gap-1 z-10">
         <PlusIcon className="stroke-gray-light" />
         <span className="text-gray-light">تسک جدید</span>
       </Button>

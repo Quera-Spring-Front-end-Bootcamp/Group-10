@@ -1,5 +1,11 @@
+import AutocompleteWithCreate from "../components/test";
+
 function UI() {
-  return <div>ui</div>;
+  return (
+    <div>
+      <AutocompleteWithCreate />
+    </div>
+  );
 }
 
 export default UI;

@@ -10,6 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fullcalendar/core": "^6.1.8",
+    "@fullcalendar/daygrid": "^6.1.8",
+    "@fullcalendar/interaction": "^6.1.8",
+    "@fullcalendar/moment-timezone": "^6.1.8",
+    "@fullcalendar/react": "^6.1.8",
     "@headlessui/react": "^1.7.14",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/lodash": "^4.14.194",

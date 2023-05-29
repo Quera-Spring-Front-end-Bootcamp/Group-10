@@ -8,7 +8,12 @@ import WorkSpaceColor from "./WorkSpaceColor";
 import Review from "./Review";
 
 interface Props
-  extends PropsWithChildren<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>> {
+  extends PropsWithChildren<
+    React.DetailedHTMLProps<
+      React.HTMLAttributes<HTMLDivElement>,
+      HTMLDivElement
+    >
+  > {
   title?: any;
 }
 
@@ -22,9 +27,9 @@ function WorkTask({ title = taskPanel, className, children, ...props }: Props) {
   const [modalOpen, setModalOpen] = useState(false);
   const [currentCard, setCurrentCard] = useState(1);
 
-  const [name , setName] = useState('')
-  const [color , setColor] = useState('')
-  const [member , setMember] = useState('')
+  const [name, setName] = useState("");
+  const [color, setColor] = useState("");
+  const [member, setMember] = useState("");
 
   return (
     <>
@@ -36,7 +41,12 @@ function WorkTask({ title = taskPanel, className, children, ...props }: Props) {
         <p className="text-black mr-2">ساختن اسپیس جدید</p>
       </Button>
 
-      <Modal open={modalOpen} onClose={() => {}}>
+      <Modal
+        open={modalOpen}
+        onClose={() => {
+          console.log("close");
+        }}
+      >
         <div className="w-[505px]">
           <div className="flex transition-all duration-700 ease-in-out">
             {taskPanel.map(({ id, title }) => (
@@ -44,11 +54,15 @@ function WorkTask({ title = taskPanel, className, children, ...props }: Props) {
                 close={() => {
                   setModalOpen(!modalOpen);
                   setCurrentCard(1);
-                  setName('')
-                  setColor('')
-                  setMember('')
+                  setName("");
+                  setColor("");
+                  setMember("");
                 }}
-                back={currentCard === 1 ? undefined : () => setCurrentCard((current) => current - 1)}
+                back={
+                  currentCard === 1
+                    ? undefined
+                    : () => setCurrentCard((current) => current - 1)
+                }
                 key={id}
                 title={`${title}`}
                 className={`${currentCard === id ? "z-10" : "-z-10"} ${
@@ -57,23 +71,38 @@ function WorkTask({ title = taskPanel, className, children, ...props }: Props) {
               >
                 <div
                   className={`mt-[40px] flex justify-start px-1 ${
-                    currentCard === taskPanel.length && "border border-gray rounded-md p-5"
+                    currentCard === taskPanel.length &&
+                    "border border-gray rounded-md p-5"
                   }`}
                 >
-                  {currentCard === 1 && (<TextInput onChange={(e) => {setName(e.target.value)}} label="نام ورک اسپیس" containerClassName="w-full" className=" !w-full mt-2" />)}
-                  {currentCard === 2 && (<WorkSpaceColor onSelect={(e) => setColor(e)}/>)}
-                  {currentCard === 3 && (<Review name={`${name}`} color={`${color}`}/>)}
+                  {currentCard === 1 && (
+                    <TextInput
+                      onChange={(e) => {
+                        setName(e.target.value);
+                      }}
+                      label="نام ورک اسپیس"
+                      containerClassName="w-full"
+                      className=" !w-full mt-2"
+                    />
+                  )}
+                  {currentCard === 2 && (
+                    <WorkSpaceColor onSelect={(e) => setColor(e)} />
+                  )}
+                  {currentCard === 3 && (
+                    <Review name={`${name}`} color={`${color}`} />
+                  )}
                 </div>
                 <Button
                   className="w-11/12 mt-[60px]"
                   onClick={() => {
                     if (currentCard !== taskPanel.length) {
                       setCurrentCard((s) => s + 1);
-                    } else {
                     }
                   }}
                 >
-                  {currentCard === taskPanel.length ? "ساختن ورک اسپیس" : "ادامه"}
+                  {currentCard === taskPanel.length
+                    ? "ساختن ورک اسپیس"
+                    : "ادامه"}
                 </Button>
               </Card>
             ))}

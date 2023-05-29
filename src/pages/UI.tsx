@@ -1,5 +1,11 @@
+import WorkTask from "../components/ui/WorkTask";
+
 function UI() {
-  return <div>ui</div>;
+  return (
+    <div>
+      <WorkTask />
+    </div>
+  );
 }
 
 export default UI;

@@ -1,7 +1,15 @@
 import { SVGProps } from "react";
+
 function SVGComponent(props: SVGProps<SVGSVGElement>) {
   return (
-    <svg width={25} height={24} viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      width={25}
+      height={24}
+      viewBox="0 0 25 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -10,8 +18,18 @@ function SVGComponent(props: SVGProps<SVGSVGElement>) {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <path d="M12.5 8V16" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M16.5 12H8.5" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d="M12.5 8V16"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M16.5 12H8.5"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }

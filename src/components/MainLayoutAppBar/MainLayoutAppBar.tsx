@@ -1,6 +1,6 @@
 import { Tab } from "@headlessui/react";
 import DotListIcon from "../icons/DotListIcon";
-import ColumnArtBoardIcon from "../icons/ColumnArtboardIcon";
+import ColumnArtBoardIcon from "../icons/ColumnArtBoardIcon";
 import CalendarScheduleIcon from "../icons/CalendarScheduleIcon";
 import ShareIcon from "../icons/ShareIcon";
 import { useNavigate, useParams, useRoutes } from "react-router-dom";

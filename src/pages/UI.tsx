@@ -1,5 +1,7 @@
+import Tab from "../components/ui/TabList";
+
 function UI() {
-  return <div>ui</div>;
+  return <Tab />;
 }
 
 export default UI;

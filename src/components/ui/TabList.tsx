@@ -5,9 +5,9 @@ import ProfileImage from "../../assets/react.svg";
 import TextLineIcon from "../icons/TextLineIcon";
 import PiriorityIcon from "../icons/PiriorityIcon";
 
-function Tab() {
-  const [isOpenOne, setIsOpenOne] = useState(true);
-  const [isOpenTwo, setIsOpenTwo] = useState(true);
+function Tab(): JSX.Element {
+  const [isOpenOne, setIsOpenOne] = useState<boolean>(true);
+  const [isOpenTwo, setIsOpenTwo] = useState<boolean>(true);
 
   const toggleTabOne = () => {
     setIsOpenOne(!isOpenOne);

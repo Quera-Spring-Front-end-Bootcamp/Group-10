@@ -3,8 +3,16 @@ import MainLayoutDrawer from "../components/MainLayoutDrawer/MainLayoutDrawer";
 import MainLayoutAppBar from "../components/MainLayoutAppBar/MainLayoutAppBar";
 import Button from "../components/ui/Button";
 import PlusIcon from "../components/icons/PlusIcon";
+import { WorkspaceGetAll } from "../api/Workspace";
+import { useEffect } from "react";
 
 const MainLayout = () => {
+  const { data } = WorkspaceGetAll();
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
   return (
     <div className="bg-gray-light w-screen h-screen flex flex-row">
       <MainLayoutDrawer />

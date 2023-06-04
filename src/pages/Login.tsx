@@ -3,6 +3,16 @@ import Button from "../components/ui/Button";
 import TextInput from "../components/ui/TextInput";
 import { useForm } from "react-hook-form";
 import Card from "../components/ui/Card";
+import { AuthLogin } from "../api/Auth";
+import { useEffect } from "react";
+import store from "../redux/store";
+import {
+  setAccessToken,
+  setRefreshToken,
+  setUser,
+} from "../redux/slices/authSlice";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 type LoginFormData = {
   email: string;
@@ -18,9 +28,26 @@ function Login() {
     mode: "onTouched",
   });
 
+  const { mutate, isLoading, isSuccess, data } = AuthLogin();
+  const navigate = useNavigate();
+
   function handleSubmitForm(data: LoginFormData) {
+    mutate({
+      emailOrUsername: data.email,
+      password: data.password,
+    });
     console.log(data);
   }
+
+  useEffect(() => {
+    if (isSuccess) {
+      store.dispatch(setAccessToken(data.data?.accessToken));
+      store.dispatch(setRefreshToken(data.data?.refreshToken));
+      store.dispatch(setUser(data.data?.toBeSendUserData));
+      toast.success(data.message || "ورود با موفقیت انجام شد");
+      navigate("/projects");
+    }
+  }, [isSuccess]);
 
   return (
     <div className="w-screen h-screen flex justify-center items-center">
@@ -47,6 +74,7 @@ function Login() {
             className="w-full"
             containerClassName="mt-4"
             name="password"
+            type="password"
             register={register("password", {
               required: "این فیلد الزامی است!",
             })}
@@ -58,7 +86,7 @@ function Login() {
           >
             رمز عبور خود را فراموش کردید؟
           </Link>
-          <Button className="w-full" type="submit">
+          <Button className="w-full" type="submit" disabled={isLoading}>
             ورود
           </Button>
         </form>

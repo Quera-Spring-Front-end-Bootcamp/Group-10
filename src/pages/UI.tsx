@@ -1,7 +1,7 @@
-import Tab from "../components/ui/TabList";
+import TabList from "../components/ui/TabList";
 
 function UI() {
-  return <Tab />;
+  return <TabList />;
 }
 
 export default UI;

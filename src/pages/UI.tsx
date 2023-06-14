@@ -1,5 +1,7 @@
+import MakeNewTask from "../components/ui/MakeNewTask";
+
 function UI() {
-  return <div>UI</div>;
+  return <MakeNewTask/>;
 }
 
 export default UI;

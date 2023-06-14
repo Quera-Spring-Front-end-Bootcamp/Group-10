@@ -15,16 +15,19 @@ interface colorOption {
 }
 
 const colorOptions: colorOption[] = [
-  { colorCode: "#FB0606", name: "فوری" },
-  { colorCode: "#FFE605", name: "بالا" },
-  { colorCode: "#09DBCE", name: "متوسط" },
-  { colorCode: "#B2ACAC", name: "پایین" },
+  { colorCode: "stroke-[#FB0606]", name: "فوری" },
+  { colorCode: "stroke-[#FFE605]", name: "بالا" },
+  { colorCode: "stroke-[#09DBCE]", name: "متوسط" },
+  { colorCode: "stroke-[#B2ACAC]", name: "پایین" },
 ];
 
 function TagBoxList(): JSX.Element {
   const [showDiv1, setShowDiv1] = useState(false);
   const [selectedPiriority, setSelectedPiriority] =
-    useState<colorOption | null>(null);
+    useState<colorOption | null>({
+      colorCode: "stroke-[#B2ACAC]",
+      name: "پایین",
+    });
 
   const handleButtonClick = (buttonNumber: number) => {
     setShowDiv1(buttonNumber === 1 ? !showDiv1 : false);
@@ -49,11 +52,7 @@ function TagBoxList(): JSX.Element {
         className="border-dotted border-2 border-slate-300 rounded-full w-12 h-12 p-1 ml-5 cursor-pointer"
         onClick={handleButtonClickTwo}
       >
-        <PiriorityIcon
-          className={`stroke-[${
-            selectedPiriority?.colorCode ?? "#AAAAAA"
-          }] mr-1`}
-        />
+        <PiriorityIcon className={selectedPiriority?.colorCode} />
       </button>
       {selectedPiriority && (
         <div className="bg-white shadow-lg shadow-slate-400 rounded-xl p-3 absolute right-10 bottom-28">
@@ -65,7 +64,7 @@ function TagBoxList(): JSX.Element {
               >
                 <PiriorityIcon
                   onClick={() => handleColorClick(color)}
-                  className={`stroke-[${color.colorCode}] cursor-pointer`}
+                  className={`${color.colorCode} cursor-pointer`}
                 />
                 <p className="text-md px-3 py-1">{color.name}</p>
               </li>

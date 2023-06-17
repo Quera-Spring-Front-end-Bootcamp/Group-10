@@ -80,7 +80,7 @@ function MyCombobox(): JSX.Element {
           onKeyDown={handleKeyDown}
         />
 
-        <Combobox.Options>
+        <Combobox.Options static>
           {
             filteredTags.map((tag) => (
                 <Combobox.Option

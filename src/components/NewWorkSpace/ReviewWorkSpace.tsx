@@ -1,5 +1,5 @@
-import Button from "./Button";
-import Avatar from "./Avatar";
+import Button from "../ui/Button";
+import Avatar from "../ui/Avatar";
 
 type Props = {
   name?: string;
@@ -7,7 +7,7 @@ type Props = {
   onSubmit?: () => void;
 };
 
-function Review({ name, color, onSubmit }: Props) {
+function ReviewWorkSpace({ name, color, onSubmit }: Props) {
   return (
     <div className="w-full">
       <div className="flex flex-col w-full gap-4 border border-gray rounded-md p-5">
@@ -31,4 +31,4 @@ function Review({ name, color, onSubmit }: Props) {
   );
 }
 
-export default Review;
+export default ReviewWorkSpace;

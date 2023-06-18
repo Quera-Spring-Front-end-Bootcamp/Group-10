@@ -1,5 +1,7 @@
 import { Disclosure } from "@headlessui/react";
 import ListItem from "../ListItem";
+import DotListIcon from "../icons/DotListIcon";
+import DotsMenu from "../icons/DotsMenu";
 
 type MainLayoutDrawerListSubProject = {
   id: number;
@@ -87,19 +89,26 @@ function MainLayoutDrawerList() {
     <div className="flex flex-col mt-4 gap-2 overflow-auto">
       {tempProjects.map(({ id, title, color, subProjects }) => (
         <Disclosure key={id}>
-          <Disclosure.Button className="py-2 text-right flex items-center gap-2">
-            <div className={`w-5 h-5 rounded-md ${color}`} />
-            {title}
+          <Disclosure.Button className="py-2 text-right flex group">
+            <div className="flex items-center gap-2 flex-1">
+              <div className={`w-5 h-5 rounded-md ${color}`} />
+              {title}
+            </div>
+            <DotsMenu className="stroke-black hidden group-hover:block" />
           </Disclosure.Button>
           <Disclosure.Panel className="text-gray-500 pr-7 flex gap-3 flex-col">
             {subProjects.map((subProject) => {
               return (
-                <ListItem
-                  key={subProject.id}
-                  id={subProject.id}
-                  title={subProject.title}
-                  to={`/projects/${subProject.id}`}
-                />
+                <div className="group flex">
+                  <ListItem
+                    key={subProject.id}
+                    id={subProject.id}
+                    title={subProject.title}
+                    to={`/projects/${subProject.id}`}
+                    className="flex-1"
+                  />
+                  <DotsMenu className="stroke-black hidden group-hover:block" />
+                </div>
               );
             })}
           </Disclosure.Panel>

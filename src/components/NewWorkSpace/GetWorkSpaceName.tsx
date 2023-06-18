@@ -1,5 +1,5 @@
-import TextInput from "./TextInput";
-import Button from "./Button";
+import TextInput from "../ui/TextInput";
+import Button from "../ui/Button";
 import { useForm } from "react-hook-form";
 
 export type NewTaskStepOneFormDataType = {
@@ -9,7 +9,7 @@ export type NewTaskStepOneFormDataType = {
 type NewTaskInputProps = {
   onSubmit: (data: NewTaskStepOneFormDataType) => void;
 };
-function NewTaskInput({ onSubmit }: NewTaskInputProps) {
+function GetWorkSpaceName({ onSubmit }: NewTaskInputProps) {
   const {
     register,
     handleSubmit,
@@ -37,4 +37,4 @@ function NewTaskInput({ onSubmit }: NewTaskInputProps) {
   );
 }
 
-export default NewTaskInput;
+export default GetWorkSpaceName;

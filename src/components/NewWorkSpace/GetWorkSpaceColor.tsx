@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import SelectIcon from "../icons/SelectIcon";
 import Forbidden from "../icons/ForbiddenIcon";
-import Button from "./Button";
+import Button from "../ui/Button";
 
 interface Color {
   id: number;
@@ -41,7 +41,7 @@ const colors: Color[] = [
   { id: 23, colorHEX: "bg-[#7FA1D1]" },
 ];
 
-function WorkSpaceColor({ onSubmit, title }: Props) {
+function GetWorkSpaceColor({ onSubmit, title }: Props) {
   const [selected, setSelected] = useState(0);
 
   function activeColor(id: number) {
@@ -100,4 +100,4 @@ function WorkSpaceColor({ onSubmit, title }: Props) {
   );
 }
 
-export default WorkSpaceColor;
+export default GetWorkSpaceColor;

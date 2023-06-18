@@ -12,6 +12,7 @@ import SearchInput from "../SearchInput";
 import MainLayoutDrawerList from "./MainLayoutDrawerList";
 import Avatar from "../ui/Avatar";
 import ExitIcon from "../icons/ExitIcon";
+import NewWorkSpace from "../NewWorkSpace/NewWorkSpace";
 
 /* -------------------------------------------------------------------------- */
 /*                                   Const                                    */
@@ -53,10 +54,7 @@ function MainLayoutDrawer() {
         <div className="mt-3">
           <SearchInput placeholder="جستجو کنید" />
         </div>
-        <Button className="!py-1 !bg-gray-semi-light flex items-center justify-center mt-3">
-          <PlusIcon className="stroke-black" />
-          <span className="text-black text-sm">ساخت اسپیس جدید</span>
-        </Button>
+        <NewWorkSpace />
         <div className="flex-1 overflow-auto">
           <MainLayoutDrawerList />
         </div>

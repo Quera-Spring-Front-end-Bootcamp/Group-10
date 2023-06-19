@@ -4,7 +4,7 @@ import Avatar from "./Avatar";
 import ProfileImage from "../../assets/react.svg";
 
 import ArrowBottomIcon from "../icons/ArrowBottomIcon";
-import PiriorityIcon from "../icons/PiriorityIcon";
+import PriorityIcon from "../icons/PriorityIcon";
 import TextLineIcon from "../icons/TextLineIcon";
 
 function TabList(): JSX.Element {
@@ -57,7 +57,7 @@ function TabList(): JSX.Element {
                           <Avatar src={ProfileImage} alt="user image..." />
                         </div>
                         <p className="text-xs">6 آبان</p>
-                        <PiriorityIcon className="stroke-red-600" />
+                        <PriorityIcon className="stroke-red-600" />
                         <TextLineIcon className="stroke-gray" />
                       </div>
                     </div>
@@ -77,7 +77,7 @@ function TabList(): JSX.Element {
                           <Avatar src={ProfileImage} alt="user image..." />
                         </div>
                         <p className="text-xs">6 آبان</p>
-                        <PiriorityIcon className="stroke-red-600" />
+                        <PriorityIcon className="stroke-red-600" />
                         <TextLineIcon className="stroke-gray" />
                       </div>
                     </div>
@@ -145,7 +145,7 @@ function TabList(): JSX.Element {
                           <Avatar src={ProfileImage} alt="user image..." />
                         </div>
                         <p className="text-xs">6 آبان</p>
-                        <PiriorityIcon className="stroke-red-600" />
+                        <PriorityIcon className="stroke-red-600" />
                         <TextLineIcon className="stroke-gray" />
                       </div>
                     </div>
@@ -165,7 +165,7 @@ function TabList(): JSX.Element {
                           <Avatar src={ProfileImage} alt="user image..." />
                         </div>
                         <p className="text-xs">6 آبان</p>
-                        <PiriorityIcon className="stroke-red-600" />
+                        <PriorityIcon className="stroke-red-600" />
                         <TextLineIcon className="stroke-gray" />
                       </div>
                     </div>

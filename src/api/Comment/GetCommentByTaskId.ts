@@ -4,13 +4,13 @@ import { ResponseBody } from "../Types";
 
 type CommentGetCommentByTaskIdResponse = ResponseBody<
     {
-        "_id": string,
-        "text": string,
-        "user": {
-            "_id": string,
-            "username": string
+        _id: string,
+        text: string,
+        user: {
+            _id: string,
+            username: string
         },
-        "createdAt": string
+        createdAt: string
     }[]
 > 
 

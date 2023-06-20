@@ -2,8 +2,8 @@ import { useMutation } from "@tanstack/react-query";
 import AXIOS from "../../utils/axios";
 
 type CommentCreateNewCommentRequestBody = {
-    "text": string,
-    "taskId": string
+    text: string,
+    taskId: string
 }
 
 export function CreateNewTask() {

@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { ResponseBody } from "../Types";
 import AXIOS from "../../utils/axios";
+import { UsersBaseRoute } from "../api.routes";
 
 type UserGetUserByUserNameOrIdResponse = ResponseBody<{
   _id: string;
@@ -19,7 +20,7 @@ type UserGetUserByUserNameOrIdResponse = ResponseBody<{
 
 export function UserGetUserByUserNameOrId(usernameOrId: string) {
   async function userGetUserByUserNameOrId(): Promise<UserGetUserByUserNameOrIdResponse> {
-    const { data } = await AXIOS.get(`/users/${usernameOrId}`);
+    const { data } = await AXIOS.get(`${UsersBaseRoute}/${usernameOrId}`);
     return data;
   }
   return useQuery(

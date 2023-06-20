@@ -6,13 +6,13 @@ import { ResponseBody } from "../Types";
 /*                                  createTask                                */
 /* -------------------------------------------------------------------------- */
 
-type taskCreateTaskRequestBody = {
+type TaskCreateTaskRequestBody = {
   name: string;
   description: string;
   boardId: string;
 };
 
-type taskCreateTaskResponseBody = ResponseBody<{
+type TaskCreateTaskResponseBody = ResponseBody<{
   name: string;
   description: string;
   label: [];
@@ -26,13 +26,13 @@ type taskCreateTaskResponseBody = ResponseBody<{
 
 export function TaskCreateTask() {
   async function taskCreateTask(
-    incomingData: taskCreateTaskRequestBody
-  ): Promise<taskCreateTaskResponseBody> {
+    incomingData: TaskCreateTaskRequestBody
+  ): Promise<TaskCreateTaskResponseBody> {
     const { data } = await AXIOS.post("/task/", incomingData);
     return data;
   }
 
-  return useMutation((data: taskCreateTaskRequestBody) => taskCreateTask(data));
+  return useMutation((data: TaskCreateTaskRequestBody) => taskCreateTask(data));
 }
 
 

@@ -3,7 +3,6 @@ import Button from "../components/ui/Button";
 import TextInput from "../components/ui/TextInput";
 import { useForm } from "react-hook-form";
 import Card from "../components/ui/Card";
-import { AuthLogin } from "../api/Auth";
 import { useEffect } from "react";
 import store from "../redux/store";
 import {
@@ -13,6 +12,7 @@ import {
 } from "../redux/slices/authSlice";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { AuthLogin } from "../api/Auth/Login";
 
 type LoginFormData = {
   email: string;

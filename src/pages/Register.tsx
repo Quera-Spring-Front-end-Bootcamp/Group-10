@@ -4,9 +4,9 @@ import TextInput from "../components/ui/TextInput";
 import Checkbox from "../components/ui/Checkbox";
 import Card from "../components/ui/Card";
 import { useForm } from "react-hook-form";
-import { AuthRegister } from "../api/Auth";
 import { useEffect } from "react";
 import { toast } from "react-hot-toast";
+import { AuthRegister } from "../api/Auth/Register";
 
 type RegisterFormData = {
   username: string;

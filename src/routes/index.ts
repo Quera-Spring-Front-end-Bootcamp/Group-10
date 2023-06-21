@@ -24,12 +24,12 @@ import ProjectCalendarView from "../pages/ProjectCalendarView";
 /*                                    Types                                   */
 /* -------------------------------------------------------------------------- */
 
-type RouteType = {
+export type RouteType = {
   name: string;
   title: string;
   component: () => JSX.Element;
   path: string;
-  isPublic?: boolean;
+  isPublic: boolean;
 };
 
 export type LayoutType = {
@@ -86,21 +86,21 @@ export const routes: LayoutType[] = [
         title: "اطلاعات فردی",
         component: Personal,
         path: "/user/personal",
-        isPublic: true,
+        isPublic: false,
       },
       {
         name: "user account settings",
         title: "اطلاعات حساب",
         component: Account,
         path: "/user/account",
-        isPublic: true,
+        isPublic: false,
       },
       {
         name: "user app settings",
         title: "تنظیمات سامانه",
         component: Settings,
         path: "/user/settings",
-        isPublic: true,
+        isPublic: false,
       },
     ],
   },
@@ -112,7 +112,7 @@ export const routes: LayoutType[] = [
         title: "Project page",
         component: Project,
         path: "/projects",
-        isPublic: true,
+        isPublic: false,
       },
       {
         name: "project",

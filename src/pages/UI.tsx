@@ -1,5 +1,5 @@
 function UI() {
-  return <div>ui</div>;
+  return <div>UI</div>;
 }
 
 export default UI;

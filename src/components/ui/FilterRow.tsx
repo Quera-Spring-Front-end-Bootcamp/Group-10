@@ -1,12 +1,17 @@
-import React, { Fragment, useState, PropsWithChildren } from "react";
+import React, { PropsWithChildren } from "react";
 import Dustbin from "../icons/DustbinIcon";
 import ListBox from "./ListBox";
 import IconButton from "./IconButton";
 
 interface Props
-  extends PropsWithChildren<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>> {
-    dustbin ?: () => void
-  }
+  extends PropsWithChildren<
+    React.DetailedHTMLProps<
+      React.HTMLAttributes<HTMLDivElement>,
+      HTMLDivElement
+    >
+  > {
+  dustbin?: () => void;
+}
 
 const tag = [
   { id: 1, name: "درس", bg: "bg-[#EBC8C8]", select: false },
@@ -19,7 +24,7 @@ const done = [
   { id: 2, name: "نیست", bg: "", select: false },
 ];
 
-function FilterRow({ dustbin , className, children, ...props }: Props) {
+function FilterRow({ dustbin, className, children, ...props }: Props) {
   return (
     <div className={`flex justify-center ${className}`}>
       <div className="flex gap-5 items-center w-full">

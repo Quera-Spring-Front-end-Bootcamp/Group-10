@@ -1,5 +1,11 @@
+import Filter from "../components/ui/Filter";
+
 function UI() {
-  return <div>UI</div>;
+  return (
+    <div>
+      <Filter />
+    </div>
+  );
 }
 
 export default UI;

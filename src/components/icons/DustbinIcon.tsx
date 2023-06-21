@@ -1,8 +1,15 @@
-import * as React from "react";
 import { SVGProps } from "react";
-function SVGComponent(props: SVGProps<SVGSVGElement>) {
+
+function DustbinIcon(props: SVGProps<SVGSVGElement>) {
   return (
-    <svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      width={20}
+      height={20}
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -11,8 +18,18 @@ function SVGComponent(props: SVGProps<SVGSVGElement>) {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <path d="M9.67255 9.52148V14.3578" strokeWidth={1.20907} strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M3.22461 6.29755H16.1214" strokeWidth={1.20907} strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d="M9.67255 9.52148V14.3578"
+        strokeWidth={1.20907}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M3.22461 6.29755H16.1214"
+        strokeWidth={1.20907}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
       <path
         d="M13.703 6.29743L12.8865 4.11949C12.6503 3.48997 12.049 3.07324 11.3768 3.07324H7.96883C7.29659 3.07324 6.69528 3.48997 6.4591 4.11949L5.64258 6.29743"
         strokeWidth={1.20907}
@@ -34,4 +51,4 @@ function SVGComponent(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
-export default SVGComponent;
+export default DustbinIcon;

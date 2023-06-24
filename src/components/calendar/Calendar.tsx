@@ -25,39 +25,42 @@ function Calendar() {
       locale={faLocale}
       contentHeight="700px"
       fixedWeekCount={false}
-      dayCellClassNames="relative right-0"
-      weekNumberClassNames={"text-red-100"}
+      // dayCellClassNames="relative right-0"
+      // weekNumberClassNames={"text-red-100"}
       // dateClick={handleDateClick}
       firstDay={6}
       dayCellContent={(props) => {
         return (
-          <div className="bg-red-400">
-            <span>{props.dayNumberText}</span>
-            <Popover className="relative top-16">
-              <Popover.Button className="bg-primary invisible add-button">
+          <div className="flex justify-between">
+            <Popover className="relative">
+              <Popover.Button className="bg-primary rounded-md">
                 <PlusIcon className="stroke-white" />
               </Popover.Button>
 
-              <Popover.Panel className="absolute z-50 mt-4">
-                <Card className="border-primary border bg-white flex w-[400px]">
-                  <div className="flex flex-row flex-1">
+              <Popover.Panel focus className="absolute">
+                <Card className="border-primary border h-[300px] bg-white flex flex-col w-[400px] !p-3">
+                  <div className="flex flex-1">
                     <button>
-                      <CloseIcon className="stroke-gray" />
+                      <CloseIcon
+                        className="stroke-gray w-10 h-10"
+                        tabIndex={100}
+                      />
                     </button>
                     <input
-                      onClick={() => console.log(11)}
-                      className="flex-1 bg-red-400 z-50"
-                      placeholder="salam"
+                      className="flex-1 focus:outline-none"
+                      placeholder="نام تسک را وارد کنید."
+                      tabIndex={1}
                     />
                   </div>
                 </Card>
+
+                <img src="/solutions.jpg" alt="" />
               </Popover.Panel>
             </Popover>
+            <span className="-z-50">{props.dayNumberText}</span>
           </div>
         );
       }}
-
-      // datesSet={(args) => useContext?.setItem(args.view.title)}
     />
   );
 }

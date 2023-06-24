@@ -1,21 +1,45 @@
-import React, { useState, PropsWithChildren } from "react";
+import { useContext, useState, useEffect } from "react";
+import { useDrop, DropTargetMonitor } from "react-dnd";
 import IconButton from "./IconButton";
 import DotMenuIcon from "../icons/DotMenuIcon";
 import PlusIcon from "../icons/PlusIcon";
-import CardCol from "./CardCol";
+import { DragAndDropContext, updateArray } from "./ViewDragAndDrop";
 
-interface Props
-  extends PropsWithChildren<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>> {
+interface Props {
+  children?: JSX.Element;
   title?: string;
+  coltype?: string;
   borderColor?: string;
 }
 
-function ViewCol({ title = "Open", borderColor = "border-[#F98F2E]", className, children, ...props }: Props) {
+type monitoeType = { itemID: number; itemCategory: string };
+
+function ViewCol({ title = "Open", borderColor = "border-[#F98F2E]", children }: Props) {
+  const { data, setData, titleCol } = useContext(DragAndDropContext);
+
   const [count, setCount] = useState(0);
+  const [{}, drop] = useDrop(() => ({
+    accept: titleCol.map((e) => e.title),
+    collect: (monitor: DropTargetMonitor<monitoeType, void>) => {
+      return {
+        isOver: monitor.isOver(),
+        canDrop: monitor.canDrop(),
+      };
+    },
+    drop: (monitor: monitoeType) => {
+      const array = updateArray(data, monitor.itemID, title);
+      setData(array);
+    },
+  }));
+
+  useEffect(() => {
+    setCount(children?.props.children.filter((e: any) => e !== false).length);
+  }, [data, titleCol]);
+
   return (
-    <div className="w-[250px] my-[17px]">
+    <div className="w-[250px] my-[17px] shrink-0" ref={drop}>
       <div
-        className={` flex justify-between items-center m-[8px] w-full border-t-[1px] group rounded-md p-2 shadow-[0px_2px_8px_#0000002e] ${borderColor}`}
+        className={` flex justify-between items-center m-[8px] w-full border-t-[1px] group rounded-md p-2 shadow-[0px_2px_8px_#0000002e] ${borderColor} `}
       >
         <div className="flex gap-2">
           <h2 className="text-[16px]">{title}</h2>
@@ -23,7 +47,7 @@ function ViewCol({ title = "Open", borderColor = "border-[#F98F2E]", className, 
             {count}
           </span>
         </div>
-        <div className="flex gap-2 hidden group-hover:flex">
+        <div className="flex gap-2 group-hover:flex">
           <IconButton>
             <DotMenuIcon />
           </IconButton>
@@ -32,10 +56,7 @@ function ViewCol({ title = "Open", borderColor = "border-[#F98F2E]", className, 
           </IconButton>
         </div>
       </div>
-      <div className="flex flex-col  mt-[20px]">
-        <CardCol />
-        <CardCol />
-      </div>
+      <div className={`flex flex-col  mt-[20px]`}>{children}</div>
     </div>
   );
 }

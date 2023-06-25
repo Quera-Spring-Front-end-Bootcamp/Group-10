@@ -16,13 +16,13 @@ type ProjectUpdateProjectControllerResponseBody = ResponseBody<{
 }>
 
 
-export function UpdateProjectController() {
-    async function updateProjectController(
+export function ProjectUpdateProjectController(id:string) {
+    async function projectUpdateProjectController(
       incomingData: ProjectUpdateProjectControllerRequestBody
     ): Promise<ProjectUpdateProjectControllerResponseBody> {
-      const { data } = await AXIOS.put("/projects/:id", incomingData);
+      const { data } = await AXIOS.put(`/projects/:${id}`, incomingData);
       return data;
     }
   
-    return useMutation((data: ProjectUpdateProjectControllerRequestBody) => updateProjectController(data));
+    return useMutation((data: ProjectUpdateProjectControllerRequestBody) => projectUpdateProjectController(data));
 }

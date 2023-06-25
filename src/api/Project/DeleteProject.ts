@@ -1,25 +1,24 @@
-import { useMutation } from "@tanstack/react-query";
-import AXIOS from "../../utils/axios";
-import { ResponseBody } from "../Types";
+// import { useMutation } from "@tanstack/react-query";
+// import AXIOS from "../../utils/axios";
+// import { ResponseBody } from "../Types";
 
-type ProjectDeleteProjectResponseBody = ResponseBody<{
-    _id: string,
-    name: string,
-    workspace: string,
-    members: string[],
-    boards: [],
-    __v: number
-}>
+// type ProjectDeleteProjectResponseBody = ResponseBody<{
+//     _id: string,
+//     name: string,
+//     workspace: string,
+//     members: string[],
+//     boards: [],
+//     __v: number
+// }>
 
 
-export function DeleteProject() {
-    async function deleteProject(
-      incomingData: ProjectDeleteProjectResponseBody
-    ): Promise<ProjectDeleteProjectResponseBody> {
-      const { data } = await AXIOS.delete("/project/deleteproject/:id", incomingData);
-      return data;
-  }
+// export function ProjectDeleteProject(id:string) {
+//     async function projectDeleteProject(
+//     ): Promise<ProjectDeleteProjectResponseBody> {
+//       const { data } = await AXIOS.delete(`/project/deleteproject/${id}`);
+//       return data;
+//   }
   
-    return useMutation((data: ProjectDeleteProjectResponseBody) => deleteProject(data));
-}
+//     return useMutation((data: ProjectDeleteProjectResponseBody) => projectDeleteProject(data));
+// }
 

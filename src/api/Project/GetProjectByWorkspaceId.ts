@@ -45,10 +45,10 @@ type ProjectGetProjectByWorkspaceIdResponse = ResponseBody<[
 ]>
 
 
-export function GetProjectByWorkspaceId() {
-    async function getProjectByWorkspaceId(): Promise<ProjectGetProjectByWorkspaceIdResponse> {
-      const { data } = await AXIOS.get("/projects/workspaces/:id");
+export function ProjectGetProjectByWorkspaceId(id:string) {
+    async function projectGetProjectByWorkspaceId(): Promise<ProjectGetProjectByWorkspaceIdResponse> {
+      const { data } = await AXIOS.get(`/projects/workspaces/:${id}`);
       return data;
     }
-    return useQuery(["GetProjectByWorkspaceId"], getProjectByWorkspaceId);
+    return useQuery(["GetProjectByWorkspaceId"], projectGetProjectByWorkspaceId);
 }

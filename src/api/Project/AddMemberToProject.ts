@@ -10,11 +10,10 @@ type ProjectAddMemberToProjectResponseBody = ResponseBody<{
 
 export function ProjectAddMemberToProject(projectId:string,userId:string) {
     async function projectAddMemberToProject(
-      incomingData: ProjectAddMemberToProjectResponseBody
     ): Promise<ProjectAddMemberToProjectResponseBody> {
-      const { data } = await AXIOS.put(`/projects/:${projectId}/members/:${userId}`, incomingData);
+      const { data } = await AXIOS.put(`/projects/:${projectId}/members/:${userId}`);
       return data;
   }
   
-    return useMutation((data: ProjectAddMemberToProjectResponseBody) => projectAddMemberToProject(data));
+    return useMutation(() => projectAddMemberToProject());
 }

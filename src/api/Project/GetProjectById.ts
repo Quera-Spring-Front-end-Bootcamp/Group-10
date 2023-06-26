@@ -25,11 +25,10 @@ type ProjectGetProjectByIdResponseBody = ResponseBody<{
 
 export function ProjectGetProjectById(id:string) {
     async function projectGetProjectById(
-      incomingData: ProjectGetProjectByIdResponseBody
     ): Promise<ProjectGetProjectByIdResponseBody> {
-      const { data } = await AXIOS.put(`/projects/:${id}`, incomingData);
+      const { data } = await AXIOS.put(`/projects/:${id}`);
       return data;
   }
   
-    return useMutation((data: ProjectGetProjectByIdResponseBody) => projectGetProjectById(data));
+    return useMutation(() => projectGetProjectById());
 }

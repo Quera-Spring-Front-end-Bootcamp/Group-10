@@ -11,11 +11,10 @@ type ProjectRemoveMemberFromProjectResponseBody = ResponseBody<{
 
 export function ProjectRemoveMemberFromProject(projectId:string,usernameOrId:string) {
     async function projectRemoveMemberFromProject(
-      incomingData: ProjectRemoveMemberFromProjectResponseBody
     ): Promise<ProjectRemoveMemberFromProjectResponseBody> {
-      const { data } = await AXIOS.delete(`/projects/:${projectId}/members/:${usernameOrId}`, incomingData);
+      const { data } = await AXIOS.delete(`/projects/:${projectId}/members/:${usernameOrId}`);
       return data;
   }
   
-    return useMutation((data: ProjectRemoveMemberFromProjectResponseBody) => projectRemoveMemberFromProject(data));
+    return useMutation(() => projectRemoveMemberFromProject());
 }

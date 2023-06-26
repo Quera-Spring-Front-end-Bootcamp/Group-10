@@ -1,67 +1,114 @@
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
-import interactionPlugin, { DateClickArg } from "@fullcalendar/interaction"; // needed for dayClick
+import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClick
 import faLocale from "@fullcalendar/core/locales/fa";
 import listPlugin from "@fullcalendar/list";
-import "./style.css";
-import { Menu, Popover } from "@headlessui/react";
+import { Dialog, Transition } from "@headlessui/react";
 import PlusIcon from "../icons/PlusIcon";
-import Card from "../ui/Card";
 import CloseIcon from "../icons/CloseIcon";
+import { useMemo, useState } from "react";
+import Button from "../ui/Button";
+import { DayCellContentArg } from "@fullcalendar/core/index.js";
+import { toJalaliDate } from "../../helpers/toJalaliDate";
+import "./style.css";
 
 function Calendar() {
-  function handleDateClick(arg: DateClickArg) {
-    console.log(arg);
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentDate, setCurrentDate] = useState<Date>(new Date());
 
-    // bind with an arrow function
-    alert(arg.dateStr);
+  function closeModal() {
+    setIsOpen(false);
   }
 
-  return (
-    <FullCalendar
-      plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}
-      headerToolbar={false}
-      locale={faLocale}
-      contentHeight="700px"
-      fixedWeekCount={false}
-      // dayCellClassNames="relative right-0"
-      // weekNumberClassNames={"text-red-100"}
-      // dateClick={handleDateClick}
-      firstDay={6}
-      dayCellContent={(props) => {
-        return (
-          <div className="flex justify-between">
-            <Popover className="relative">
-              <Popover.Button className="bg-primary rounded-md">
-                <PlusIcon className="stroke-white" />
-              </Popover.Button>
+  function openModal(props: DayCellContentArg) {
+    setCurrentDate(props.date);
+    setIsOpen(true);
+  }
 
-              <Popover.Panel focus className="absolute">
-                <Card className="border-primary border h-[300px] bg-white flex flex-col w-[400px] !p-3">
-                  <div className="flex flex-1">
+  const ShowDate = useMemo(() => {
+    const date = toJalaliDate(currentDate, "medium");
+    return `${date[0]} ${date[1]}`;
+  }, [currentDate]);
+
+  return (
+    <>
+      <Transition appear show={isOpen}>
+        <Dialog as="div" className="relative z-10" onClose={closeModal}>
+          <Transition.Child
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-black bg-opacity-25" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4 text-center">
+              <Transition.Child
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <Dialog.Panel className="w-[500px] max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all border-primary border">
+                  <div className="mt-2 flex flex-row">
                     <button>
                       <CloseIcon
                         className="stroke-gray w-10 h-10"
-                        tabIndex={100}
+                        onClick={closeModal}
                       />
                     </button>
                     <input
-                      className="flex-1 focus:outline-none"
-                      placeholder="نام تسک را وارد کنید."
-                      tabIndex={1}
+                      placeholder="نام تسک را وارد کنید"
+                      className="flex-1"
                     />
                   </div>
-                </Card>
 
-                <img src="/solutions.jpg" alt="" />
-              </Popover.Panel>
-            </Popover>
-            <span className="-z-50">{props.dayNumberText}</span>
+                  <div className="mt-4 flex flex-row justify-between items-center">
+                    <div>
+                      <p>{ShowDate}</p>
+                    </div>
+                    <Button type="button" onClick={closeModal}>
+                      ساختن تسک
+                    </Button>
+                  </div>
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
           </div>
-        );
-      }}
-    />
+        </Dialog>
+      </Transition>
+
+      <FullCalendar
+        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}
+        headerToolbar={false}
+        locale={faLocale}
+        contentHeight="700px"
+        fixedWeekCount={false}
+        firstDay={6}
+        dayCellClassNames="group"
+        dayCellContent={(props) => {
+          return (
+            <div className="flex justify-between ">
+              <button
+                className="bg-primary rounded-md invisible group-hover:visible"
+                onClick={() => openModal(props)}
+              >
+                <PlusIcon className="stroke-white" />
+              </button>
+
+              <span className="-z-50">{props.dayNumberText}</span>
+            </div>
+          );
+        }}
+      />
+    </>
   );
 }
 

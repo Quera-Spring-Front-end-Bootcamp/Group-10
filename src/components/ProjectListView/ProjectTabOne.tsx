@@ -2,71 +2,77 @@ import { Disclosure } from '@headlessui/react'
 import ArrowTopIcon from '../icons/ArrowTopIcon';
 import ProjectHeadRowOne from './TabHeadRowOne';
 import TabBodyRowOne from './TabBodyRowOne';
+import TabBodyRowTwo from './TabBodyRowTwo';
+import SectionTwoHead from './SectionTwoHead';
+import SectionTwoRowOne from './SectionTwoRowOne';
+import SectionTwoRowTwo from './SectionTwoRowTwo';
+import SectionThreeHead from './SectionThreeHead';
+import SectionThreeRowOne from './SectionThreeRowOne';
+import SectionThreeRowTwo from './SectionThreeRowTwo';
 
 
-function ProjectTabOne(){
+function ProjectTabOne({projectInfo}: any): JSX.Element{
 
     return(
         
        <div className="w-full px-4 pt-4">
-        <div className="mx-auto w-full rounded-2xl bg-white p-2">
+        <div className="mx-auto w-full rounded-2xl bg-transparent p-2">
           <Disclosure>
             {({ open }) => (
               <>
-                <Disclosure.Button className="flex w-full justify-start rounded-lg bg-purple-100 px-4 py-2 text-left text-sm font-medium hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+                <Disclosure.Button className="flex w-full justify-center items-center rounded-lg bg-transparent px-4 py-2 text-left text-sm font-medium hover:bg-purple-100 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
                   <ArrowTopIcon
                     className={`${
                       open ? 'rotate-180 transform' : ''
                     } h-5 w-5 border rounded-full stroke-black`}
                   />
-                  <ProjectHeadRowOne/>
+                  <ProjectHeadRowOne titleInfo={projectInfo}/>
                 </Disclosure.Button>
-                <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
-                  <TabBodyRowOne/>
+                <Disclosure.Panel className="px-4 pt-2 pb-2 bg-white mb-2">
+                  <TabBodyRowOne bodyInfo={projectInfo}/>
                 </Disclosure.Panel>
-                <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
-                  If you're unhappy with your purchase for any reason, email us
-                  within 90 days and we'll refund you in full, no questions asked.
+                <Disclosure.Panel className="px-4 pt-2 pb-2 bg-white mb-2">
+                  <TabBodyRowTwo bodyInfoTwo={projectInfo}/>
                 </Disclosure.Panel>
               </>
             )}
           </Disclosure>
-          <Disclosure as="div" className="mt-2">
+          <Disclosure>
             {({ open }) => (
               <>
-                <Disclosure.Button className="flex w-full justify-between rounded-lg bg-purple-100 px-4 py-2 text-left text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+                <Disclosure.Button className="flex w-full justify-center items-center rounded-lg bg-transparent px-4 py-2 text-left text-sm font-medium hover:bg-purple-100 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
                   <ArrowTopIcon
                     className={`${
                       open ? 'rotate-180 transform' : ''
                     } h-5 w-5 border rounded-full stroke-black`}
                   />
-                  <span>Do you offer technical support?</span>
+                  <SectionTwoHead titleInfo={projectInfo}/>
                 </Disclosure.Button>
-                <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
-                  No.
+                <Disclosure.Panel className="px-4 pt-2 pb-2 bg-white mb-2">
+                  <SectionTwoRowOne bodyInfo={projectInfo}/>
                 </Disclosure.Panel>
-                <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
-                  No.
+                <Disclosure.Panel className="px-4 pt-2 pb-2 bg-white mb-2">
+                  <SectionTwoRowTwo bodyInfoTwo={projectInfo}/>
                 </Disclosure.Panel>
               </>
             )}
           </Disclosure>
-          <Disclosure as="div" className="mt-2">
+          <Disclosure>
             {({ open }) => (
               <>
-                <Disclosure.Button className="flex w-full justify-between rounded-lg bg-purple-100 px-4 py-2 text-left text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+                <Disclosure.Button className="flex w-full justify-center items-center rounded-lg bg-transparent px-4 py-2 text-left text-sm font-medium hover:bg-purple-100 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
                   <ArrowTopIcon
                     className={`${
                       open ? 'rotate-180 transform' : ''
                     } h-5 w-5 border rounded-full stroke-black`}
                   />
-                  <span>Do you offer support?</span>
+                  <SectionThreeHead titleInfo={projectInfo}/>
                 </Disclosure.Button>
-                <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
-                  Yes.
+                <Disclosure.Panel className="px-4 pt-2 pb-2 bg-white mb-2">
+                  <SectionThreeRowOne bodyInfo={projectInfo}/>
                 </Disclosure.Panel>
-                <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
-                  Yes.
+                <Disclosure.Panel className="px-4 pt-2 pb-2 bg-white mb-2">
+                  <SectionThreeRowTwo bodyInfoTwo={projectInfo}/>
                 </Disclosure.Panel>
               </>
             )}

@@ -1,10 +1,10 @@
-function TabHeadRowOne({titleInfo}: any) {
+function SectionThreeHead({titleInfo}: any) {
     
     return (
         <div className="w-full flex">
             <div className="flex justify-center items-center px-2 ml-auto">
-              <p className="bg-pink-600 text-base font-medium text-white text-center rounded-lg p-1">
-                   {titleInfo.boards[0].name}
+              <p className="bg-green-600 text-base font-medium text-white text-center rounded-lg p-1">
+                   {titleInfo.boards[2].name}
               </p>
               <p className="text-xs text-center p-1 ml-auto">2 تسک</p>
             </div>
@@ -22,4 +22,4 @@ function TabHeadRowOne({titleInfo}: any) {
     )
 }
 
-export default TabHeadRowOne;
+export default SectionThreeHead;

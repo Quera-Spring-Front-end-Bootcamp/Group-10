@@ -14,10 +14,10 @@ type CommentGetCommentByTaskIdResponse = ResponseBody<
     }[]
 > 
 
-export function GetCommentByTaskId(){
-    async function getCommentByTaskId(): Promise<CommentGetCommentByTaskIdResponse> {
-        const { data } = await AXIOS.get("/comments/task/:taskId");
+export function CommentGetCommentByTaskId(taskId:string){
+    async function commentGetCommentByTaskId(): Promise<CommentGetCommentByTaskIdResponse> {
+        const { data } = await AXIOS.get(`/comments/task/:${taskId}`);
         return data;
       }
-      return useQuery(["GetCommentByTaskId"], getCommentByTaskId);
+      return useQuery(["GetCommentByTaskId"], commentGetCommentByTaskId);
 }

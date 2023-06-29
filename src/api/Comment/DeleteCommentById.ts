@@ -5,13 +5,12 @@ import { ResponseBody } from "../Types";
 type CommentDeleteCommentByIdResponseBody = ResponseBody<null>
 
 
-export function DeleteCommentById() {
-    async function deleteCommentById(
-      incomingData: CommentDeleteCommentByIdResponseBody
+export function CommentDeleteCommentById(id:string) {
+    async function commentDeleteCommentById(
     ): Promise<CommentDeleteCommentByIdResponseBody> {
-      const { data } = await AXIOS.delete("/comments/:id", incomingData);
+      const { data } = await AXIOS.delete(`/comments/:${id}`);
       return data;
   }
   
-    return useMutation((data: CommentDeleteCommentByIdResponseBody) => deleteCommentById(data));
+    return useMutation(() => commentDeleteCommentById());
 }

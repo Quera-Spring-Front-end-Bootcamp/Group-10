@@ -18,14 +18,14 @@ type CommentEditCommentResponseBody = ResponseBody<{
 }>
 
 
-export function EditComment() {
-    async function editComment(
+export function CommentEditComment(id:string) {
+    async function commentEditComment(
       incomingData: CommentEditCommentRequestBody
     ): Promise<CommentEditCommentResponseBody> {
-      const { data } = await AXIOS.post("/comments/:id", incomingData);
+      const { data } = await AXIOS.post(`/comments/:${id}`, incomingData);
       return data;
     }
   
-    return useMutation((data: CommentEditCommentRequestBody) => editComment(data));
+    return useMutation((data: CommentEditCommentRequestBody) => commentEditComment(data));
   }
 

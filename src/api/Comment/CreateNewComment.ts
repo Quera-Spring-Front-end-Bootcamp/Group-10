@@ -6,13 +6,13 @@ type CommentCreateNewCommentRequestBody = {
     taskId: string
 }
 
-export function CreateNewTask() {
-    async function createNewTask(
+export function CommentCreateNewTask() {
+    async function commentCreateNewTask(
       incomingData: CommentCreateNewCommentRequestBody
     ) {
       const { data } = await AXIOS.post("/comments/", incomingData);
       return data;
     }
   
-    return useMutation((data: CommentCreateNewCommentRequestBody) => createNewTask(data));
+    return useMutation((data: CommentCreateNewCommentRequestBody) => commentCreateNewTask(data));
   }

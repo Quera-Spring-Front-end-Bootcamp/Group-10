@@ -10,17 +10,13 @@ import PopupButton, { PopupButtonProps } from "./PopupButton";
 
 const popupData: PopupButtonProps[] = [
   {
-    title: "ساختن پروژه جدید",
+    title: "ساختن تسک جدید",
     icon: <PlusIconNoBorderIcon className="stroke-black" />,
     onClick: () => console.log("hi"),
   },
   {
-    title: "ویرایش نام ورک‌اسپیس",
+    title: "ویرایش نام پروژه",
     icon: <EditPenIcon className="stroke-black" />,
-  },
-  {
-    title: "ویرایش رنگ",
-    icon: <PaletteIcon className="stroke-black" />,
   },
   {
     title: "کپی لینک",
@@ -29,11 +25,11 @@ const popupData: PopupButtonProps[] = [
   {
     title: "حذف",
     icon: <TrashIcon className="stroke-red-500" />,
-    textClassName: "!text-red-500",
+    textClassName: "text-red-500",
   },
 ];
 
-function WorkspaceMorePopup() {
+function ProjectMorePopup() {
   return (
     <Card className="!px-3 !py-4">
       <div className="flex gap-1 flex-col">
@@ -43,8 +39,8 @@ function WorkspaceMorePopup() {
               title={popupDataItem.title}
               icon={popupDataItem.icon}
               onClick={popupDataItem.onClick}
-              textClassName={popupDataItem.textClassName}
               className={popupDataItem.className}
+              textClassName={popupDataItem.textClassName}
             />
           );
         })}
@@ -57,4 +53,4 @@ function WorkspaceMorePopup() {
   );
 }
 
-export default WorkspaceMorePopup;
+export default ProjectMorePopup;

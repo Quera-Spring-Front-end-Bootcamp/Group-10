@@ -20,7 +20,7 @@ function PopupButton({
   }
   return (
     <button
-      className={`flex flex-row gap-1 py-1 ${className}`}
+      className={`flex flex-row gap-1 py-2 ${className}`}
       onClick={handleClick}
     >
       {icon}

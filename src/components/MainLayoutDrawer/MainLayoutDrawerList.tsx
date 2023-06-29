@@ -48,7 +48,8 @@ function MainLayoutDrawerList() {
                 <ListItem
                   key={project._id}
                   id={project._id}
-                  to={`/projects/${project._id}`}
+                  to={`/projects/${project._id}/list`}
+                  customActiveChecker={`/projects/${project._id}`}
                   className="flex justify-between align-middle items-center group w-full"
                 >
                   <span>{project.name}</span>

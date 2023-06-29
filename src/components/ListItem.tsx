@@ -12,6 +12,7 @@ export interface ListItemType extends PropsWithChildren {
   to: string;
   icon?: JSX.Element;
   className?: string;
+  customActiveChecker?: string;
 }
 
 function ListItem({
@@ -20,11 +21,14 @@ function ListItem({
   icon,
   className,
   children = null,
+  customActiveChecker,
 }: ListItemType) {
   /* -------------------------------------------------------------------------- */
   /*                                    hook                                    */
   /* -------------------------------------------------------------------------- */
-  const isActive = useRouteIsActive(to);
+  const isActive = useRouteIsActive(
+    customActiveChecker ? customActiveChecker : to
+  );
   if (children) {
     return (
       <Link

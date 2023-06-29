@@ -6,7 +6,7 @@ import useRouteIsActive from "../hooks/useRouteIsActive";
 /*                                     Type                                   */
 /* -------------------------------------------------------------------------- */
 export type ListItemType = {
-  id: number;
+  id: number | string;
   title: string;
   to: string;
   icon?: JSX.Element;

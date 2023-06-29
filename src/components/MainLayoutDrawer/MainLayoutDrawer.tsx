@@ -1,44 +1,12 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import Logo from "../Logo";
 import Button from "../ui/Button";
-import ListItem, { ListItemType } from "../ListItem";
-import EditProfileIcon from "../icons/EditProfileIcon";
-import ArrowRightIcon from "../icons/ArrowRightIcon";
-import CheckProfileIcon from "../icons/CheckProfileIcon";
-import SettingsIcon from "../icons/SettingsIcon";
 import PlusIcon from "../icons/PlusIcon";
 import SearchInput from "../SearchInput";
 import MainLayoutDrawerList from "./MainLayoutDrawerList";
 import Avatar from "../ui/Avatar";
 import ExitIcon from "../icons/ExitIcon";
-
-/* -------------------------------------------------------------------------- */
-/*                                   Const                                    */
-/* -------------------------------------------------------------------------- */
-const listItems: ListItemType[] = [
-  {
-    id: 1,
-    title: "اطلاعات فردی",
-    to: "/user/personal",
-    className: "stroke-gray-dark",
-    icon: <EditProfileIcon className="stroke-gray-dark" />,
-  },
-  {
-    id: 1,
-    title: "اطلاعات حساب",
-    to: "/user/account",
-    className: "stroke-gray-dark",
-    icon: <CheckProfileIcon className="stroke-gray-dark" />,
-  },
-  {
-    id: 1,
-    title: "تنظیمات",
-    to: "/user/settings",
-    className: "stroke-gray-dark",
-    icon: <SettingsIcon className="stroke-gray-dark" />,
-  },
-];
 
 function MainLayoutDrawer() {
   return (

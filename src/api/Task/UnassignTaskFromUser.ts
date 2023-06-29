@@ -5,13 +5,12 @@ import { ResponseBody } from "../Types";
 type TaskUnassignTaskFromUserResponseBody = ResponseBody<null>
 
 
-export function UnassignTaskFromUser() {
-    async function unassignTaskFromUser(
-      incomingData: TaskUnassignTaskFromUserResponseBody
+export function TaskUnassignTaskFromUser(taskId:string,usernameOrId:string) {
+    async function taskUnassignTaskFromUser(
     ): Promise<TaskUnassignTaskFromUserResponseBody> {
-      const { data } = await AXIOS.delete("/task/:taskId/assign/:usernameOrId", incomingData);
+      const { data } = await AXIOS.delete(`/task/:${taskId}/assign/:${usernameOrId}`);
       return data;
   }
   
-    return useMutation((data: TaskUnassignTaskFromUserResponseBody) => unassignTaskFromUser(data));
+    return useMutation(() => taskUnassignTaskFromUser());
 }

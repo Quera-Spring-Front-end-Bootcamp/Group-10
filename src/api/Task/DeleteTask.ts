@@ -20,13 +20,12 @@ type TaskDeleteTaskResponseBody = ResponseBody<{
     _id: string;
 }>;
   
-export function TaskDeleteTask() {
+export function TaskDeleteTask(id:string) {
     async function taskDeleteTask(
-      incomingData: TaskDeleteTaskResponseBody
     ): Promise<TaskDeleteTaskResponseBody> {
-      const { data } = await AXIOS.delete("/task/:id", incomingData);
+      const { data } = await AXIOS.delete(`/task/:${id}`);
       return data;
   }
   
-    return useMutation((data: TaskDeleteTaskResponseBody) => taskDeleteTask(data));
+    return useMutation(() => taskDeleteTask());
 }

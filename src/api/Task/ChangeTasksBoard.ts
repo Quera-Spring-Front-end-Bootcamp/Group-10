@@ -17,13 +17,12 @@ type TaskChangeTasksBoardResponseBody = ResponseBody<{
     _id: string;
 }>;
   
-export function ChangeTasksBoard() {
-    async function changeTasksBoard(
-      incomingData: TaskChangeTasksBoardResponseBody
+export function TaskChangeTasksBoard(id:string,boardId:string) {
+    async function taskChangeTasksBoard(
     ): Promise<TaskChangeTasksBoardResponseBody> {
-      const { data } = await AXIOS.put("/task/:id/board/:boardId", incomingData);
+      const { data } = await AXIOS.put(`/task/:${id}/board/:${boardId}`);
       return data;
   }
   
-    return useMutation((data: TaskChangeTasksBoardResponseBody) => changeTasksBoard(data));
+    return useMutation(() => taskChangeTasksBoard());
 }

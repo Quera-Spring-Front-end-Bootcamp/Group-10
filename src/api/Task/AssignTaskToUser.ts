@@ -28,13 +28,12 @@ type TaskAssignTaskToUserResponseBody = ResponseBody<{
     }
 }>
 
-export function AssignTaskToUser() {
-    async function assignTaskToUser(
-      incomingData: TaskAssignTaskToUserResponseBody
+export function TaskAssignTaskToUser(taskId:string,usernameOrId:string) {
+    async function taskAssignTaskToUser(
     ): Promise<TaskAssignTaskToUserResponseBody> {
-      const { data } = await AXIOS.put("/task/:taskId/assign/:usernameOrId", incomingData);
+      const { data } = await AXIOS.put(`/task/:${taskId}/assign/:${usernameOrId}`);
       return data;
   }
   
-    return useMutation((data: TaskAssignTaskToUserResponseBody) => assignTaskToUser(data));
+    return useMutation(() => taskAssignTaskToUser());
 }

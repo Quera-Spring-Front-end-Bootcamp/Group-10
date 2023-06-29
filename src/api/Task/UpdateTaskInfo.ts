@@ -21,13 +21,13 @@ type TaskUpdateTaskInfoRequestBody = {
     deadline: string,
   }>;
   
-  export function UpdateTaskInfo() {
-    async function updateTaskInfo(
+  export function TaskUpdateTaskInfo(id:string) {
+    async function taskUpdateTaskInfo(
       incomingData: TaskUpdateTaskInfoRequestBody
     ): Promise<TaskUpdateTaskInfoResponseBody> {
-      const { data } = await AXIOS.put("/task/:id", incomingData);
+      const { data } = await AXIOS.put(`/task/:${id}`, incomingData);
       return data;
     }
   
-    return useMutation((data: TaskUpdateTaskInfoRequestBody) => updateTaskInfo(data));
+    return useMutation((data: TaskUpdateTaskInfoRequestBody) => taskUpdateTaskInfo(data));
   }

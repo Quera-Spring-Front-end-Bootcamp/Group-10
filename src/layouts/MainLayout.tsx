@@ -3,14 +3,18 @@ import MainLayoutDrawer from "../components/MainLayoutDrawer/MainLayoutDrawer";
 import MainLayoutAppBar from "../components/MainLayoutAppBar/MainLayoutAppBar";
 import Button from "../components/ui/Button";
 import PlusIcon from "../components/icons/PlusIcon";
-import { WorkspaceGetAll } from "../api/Workspace";
 import { useEffect } from "react";
+import { WorkspaceGetAll } from "../api/Workspace/GetAllWorkspaces";
+import store from "../redux/store";
+import { setWorkspaces } from "../redux/slices/workspaceSlice";
 
 const MainLayout = () => {
   const { data } = WorkspaceGetAll();
 
   useEffect(() => {
-    console.log(data);
+    if (data?.data) {
+      store.dispatch(setWorkspaces(data.data));
+    }
   }, [data]);
 
   return (

@@ -1,19 +1,22 @@
-import { Disclosure } from "@headlessui/react";
+import { Disclosure, Popover } from "@headlessui/react";
 import ListItem from "../ListItem";
 import { RootState } from "../../redux/store";
 import { useSelector } from "react-redux";
+import DotListIcon from "../icons/DotListIcon";
+import DotsMenuIcon from "../icons/DotsMenuIcon";
+import Card from "../ui/Card";
 
-type MainLayoutDrawerListSubProject = {
-  id: number;
-  title: string;
-};
+// type MainLayoutDrawerListSubProject = {
+//   id: number;
+//   title: string;
+// };
 
-type MainLayoutDrawerList = {
-  id: number;
-  title: string;
-  color: string;
-  subProjects: MainLayoutDrawerListSubProject[];
-};
+// type MainLayoutDrawerList = {
+//   id: number;
+//   title: string;
+//   color: string;
+//   subProjects: MainLayoutDrawerListSubProject[];
+// };
 
 function MainLayoutDrawerList() {
   const workspaces = useSelector((state: RootState) => state.workSpace);
@@ -22,19 +25,55 @@ function MainLayoutDrawerList() {
     <div className="flex flex-col mt-4 gap-2 overflow-auto">
       {workspaces.map(({ _id, name, projects }) => (
         <Disclosure key={_id}>
-          <Disclosure.Button className="py-2 text-right flex items-center gap-2">
-            <div className={`w-5 h-5 rounded-md bg-[#ff0000]`} />
-            {name}
+          <Disclosure.Button className="py-2 text-right flex justify-between align-middle group">
+            <div className="flex flex-row gap-2 items-center">
+              <div className={`w-5 h-5 rounded-md bg-[#ff0000]`} />
+              {name}
+            </div>
+            <Popover>
+              <Popover.Button>
+                <DotsMenuIcon className="stroke-gray invisible group-hover:visible" />
+              </Popover.Button>
+
+              <Popover.Panel className="absolute z-10">
+                <Card>
+                  <div className="grid grid-cols-2">
+                    <a href="/analytics">Analytics</a>
+                    <a href="/engagement">Engagement</a>
+                    <a href="/security">Security</a>
+                    <a href="/integrations">Integrations</a>
+                  </div>
+                </Card>
+              </Popover.Panel>
+            </Popover>
           </Disclosure.Button>
           <Disclosure.Panel className="text-gray-500 pr-7 flex gap-3 flex-col">
-            {projects.map((subProject) => {
+            {projects.map((project) => {
               return (
                 <ListItem
-                  key={subProject._id}
-                  id={subProject._id}
-                  title={subProject.name}
-                  to={`/projects/${subProject._id}`}
-                />
+                  key={project._id}
+                  id={project._id}
+                  to={`/projects/${project._id}`}
+                  className="flex justify-between align-middle items-center group w-full"
+                >
+                  <span>{project.name}</span>
+                  <Popover>
+                    <Popover.Button className="flex justify-center">
+                      <DotsMenuIcon className="stroke-gray invisible group-hover:visible" />
+                    </Popover.Button>
+
+                    <Popover.Panel className="absolute z-10">
+                      <Card>
+                        <div className="grid grid-cols-2">
+                          <a href="/analytics">Analytics</a>
+                          <a href="/engagement">Engagement</a>
+                          <a href="/security">Security</a>
+                          <a href="/integrations">Integrations</a>
+                        </div>
+                      </Card>
+                    </Popover.Panel>
+                  </Popover>
+                </ListItem>
               );
             })}
           </Disclosure.Panel>

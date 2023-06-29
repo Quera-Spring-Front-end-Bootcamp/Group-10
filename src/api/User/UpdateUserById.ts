@@ -25,13 +25,13 @@ type UserUpdateUserByIdResponse = ResponseBody<{
     "__v": number
 }>
 
-export function UpdateUserById() {
-    async function updateUserById(
+export function UserUpdateUserById(id:string) {
+    async function userUpdateUserById(
       incomingData: UserUpdateUserByIdRequestBody
     ): Promise<UserUpdateUserByIdResponse> {
-      const { data } = await AXIOS.put("/users/:id", incomingData);
+      const { data } = await AXIOS.put(`/users/:${id}`, incomingData);
       return data;
     }
   
-    return useMutation((data: UserUpdateUserByIdRequestBody) => updateUserById(data));
+    return useMutation((data: UserUpdateUserByIdRequestBody) => userUpdateUserById(data));
   }

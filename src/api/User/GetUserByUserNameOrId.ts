@@ -19,10 +19,10 @@ type UserGetUserByUserNameOrIdResponse = ResponseBody<{
 }>
 
 
-export function GetUserByUserNameOrId() {
-    async function getUserByUserNameOrId(): Promise<UserGetUserByUserNameOrIdResponse> {
-      const { data } = await AXIOS.get("/users/:usernameOrId");
+export function UserGetUserByUserNameOrId(usernameOrId:string) {
+    async function userGetUserByUserNameOrId(): Promise<UserGetUserByUserNameOrIdResponse> {
+      const { data } = await AXIOS.get(`/users/:${usernameOrId}`);
       return data;
     }
-    return useQuery(["getUserByUserNameOrId"], getUserByUserNameOrId);
+    return useQuery(["getUserByUserNameOrId"], userGetUserByUserNameOrId);
   }

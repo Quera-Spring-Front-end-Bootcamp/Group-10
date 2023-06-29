@@ -3,7 +3,7 @@ import AXIOS from "../../utils/axios";
 import { ResponseBody } from "../Types";
 
 type ProjectGetProjectByIdResponseBody = ResponseBody<{
-    _id: string,
+    _id: string,//id
     name: string,
     workspace: string,
     members: [

@@ -3,7 +3,7 @@ import AXIOS from "../../utils/axios";
 import { ResponseBody } from "../Types";
 
 type ProjectAddMemberToProjectResponseBody = ResponseBody<{
-    projectId: string,
+    projectId: string, //id
     userId: string
 }>
 

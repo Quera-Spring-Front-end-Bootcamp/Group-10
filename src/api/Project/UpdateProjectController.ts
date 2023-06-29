@@ -8,7 +8,7 @@ type ProjectUpdateProjectControllerRequestBody ={
 
 
 type ProjectUpdateProjectControllerResponseBody = ResponseBody<{
-    _id: string,
+    _id: string,//id
     name: string,
     workspace: string,
     members:string[],

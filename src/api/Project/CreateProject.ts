@@ -20,7 +20,7 @@ type ProjectCreateProjectResponseBody = ResponseBody<{
             "role": string
         }
     ],
-    _id: string, // Project _id
+    _id: string, // Project _id//id
 }>
 
 

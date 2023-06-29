@@ -3,7 +3,7 @@ import AXIOS from "../../utils/axios";
 import { ResponseBody } from "../Types";
 
 type ProjectRemoveMemberFromProjectResponseBody = ResponseBody<{
-    projectId: string,
+    projectId: string,//id
     username: string,
     userId: string
 }>

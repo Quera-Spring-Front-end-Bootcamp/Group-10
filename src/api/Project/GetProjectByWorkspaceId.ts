@@ -30,7 +30,7 @@ type ProjectGetProjectByWorkspaceIdResponse = ResponseBody<[
         "members": [
             {
                 "user": {
-                    "_id": string,
+                    "_id": string,//id
                     "username": string,
                     "firstname": string,
                     "lastname": string,

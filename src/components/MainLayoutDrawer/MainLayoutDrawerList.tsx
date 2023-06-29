@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import DotListIcon from "../icons/DotListIcon";
 import DotsMenuIcon from "../icons/DotsMenuIcon";
 import Card from "../ui/Card";
+import WorkspaceMorePopup from "./WorkspaceMorePopup";
 
 // type MainLayoutDrawerListSubProject = {
 //   id: number;
@@ -36,14 +37,7 @@ function MainLayoutDrawerList() {
               </Popover.Button>
 
               <Popover.Panel className="absolute z-10">
-                <Card>
-                  <div className="grid grid-cols-2">
-                    <a href="/analytics">Analytics</a>
-                    <a href="/engagement">Engagement</a>
-                    <a href="/security">Security</a>
-                    <a href="/integrations">Integrations</a>
-                  </div>
-                </Card>
+                <WorkspaceMorePopup />
               </Popover.Panel>
             </Popover>
           </Disclosure.Button>

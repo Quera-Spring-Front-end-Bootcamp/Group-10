@@ -4,9 +4,9 @@ import AXIOS from "../../utils/axios";
 import { UsersBaseRoute } from "../api.routes";
 
 type UserUpdateUserByIdRequestBody = {
-  firstname: string;
-  lastname: string;
-  email: string;
+  firstname?: string;
+  lastname?: string;
+  email?: string;
 };
 
 type UserUpdateUserByIdResponse = ResponseBody<{

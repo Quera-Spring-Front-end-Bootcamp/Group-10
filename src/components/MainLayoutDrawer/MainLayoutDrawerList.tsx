@@ -2,23 +2,9 @@ import { Disclosure, Popover } from "@headlessui/react";
 import ListItem from "../ListItem";
 import { RootState } from "../../redux/store";
 import { useSelector } from "react-redux";
-import DotListIcon from "../icons/DotListIcon";
 import DotsMenuIcon from "../icons/DotsMenuIcon";
-import Card from "../ui/Card";
 import WorkspaceMorePopup from "./WorkspaceMorePopup";
 import ProjectMorePopup from "./ProjectMorePopup";
-
-// type MainLayoutDrawerListSubProject = {
-//   id: number;
-//   title: string;
-// };
-
-// type MainLayoutDrawerList = {
-//   id: number;
-//   title: string;
-//   color: string;
-//   subProjects: MainLayoutDrawerListSubProject[];
-// };
 
 function MainLayoutDrawerList() {
   const workspaces = useSelector((state: RootState) => state.workSpace);

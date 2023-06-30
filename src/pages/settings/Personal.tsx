@@ -4,8 +4,11 @@ import FileInput from "../../components/ui/FileInput";
 import TextInput from "../../components/ui/TextInput";
 import Button from "../../components/ui/Button";
 import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
+import store, { RootState } from "../../redux/store";
 import { useEffect } from "react";
+import { UserUpdateUserById } from "../../api/User/UpdateUserById";
+import { toast } from "react-hot-toast";
+import { updateUser } from "../../redux/slices/authSlice";
 
 type RegisterFormData = {
   name: string;
@@ -15,6 +18,7 @@ type RegisterFormData = {
 
 function Personal() {
   const auth = useSelector((state: RootState) => state.auth);
+  const { mutate, isSuccess } = UserUpdateUserById(auth.user?._id || "");
 
   const {
     setValue,
@@ -33,8 +37,24 @@ function Personal() {
     }
   }, [auth]);
 
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("اطلاعات کاربر با موفقیت به روز رسانی شد.");
+    }
+  }, [isSuccess]);
+
   function handleSubmitForm(data: RegisterFormData) {
-    console.log(data);
+    mutate({
+      firstname: data.name,
+      lastname: data.lastName,
+      email: auth.user?.email || "",
+    });
+    store.dispatch(
+      updateUser({
+        firstname: data.name,
+        lastname: data.lastName,
+      })
+    );
   }
 
   return (

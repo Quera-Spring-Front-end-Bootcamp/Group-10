@@ -2,6 +2,9 @@ import { useForm } from "react-hook-form";
 
 import TextInput from "../../components/ui/TextInput";
 import Button from "../../components/ui/Button";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
+import { useEffect } from "react";
 
 type RegisterFormData = {
   email: string;
@@ -10,13 +13,23 @@ type RegisterFormData = {
 };
 
 function Account() {
+  const auth = useSelector((state: RootState) => state.auth);
+
   const {
+    setValue,
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<RegisterFormData>({
     mode: "onTouched",
   });
+
+  useEffect(() => {
+    if (auth) {
+      setValue("email", auth.user?.email || "");
+      setValue("username", auth.user?.username || "");
+    }
+  }, [auth]);
 
   function handleSubmitForm(data: RegisterFormData) {
     console.log(data);

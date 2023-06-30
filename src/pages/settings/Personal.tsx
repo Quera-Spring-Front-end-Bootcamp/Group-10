@@ -3,21 +3,35 @@ import { useForm } from "react-hook-form";
 import FileInput from "../../components/ui/FileInput";
 import TextInput from "../../components/ui/TextInput";
 import Button from "../../components/ui/Button";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
+import { useEffect } from "react";
 
 type RegisterFormData = {
   name: string;
   lastName: string;
-  mobile: number;
+  mobile: string;
 };
 
 function Personal() {
+  const auth = useSelector((state: RootState) => state.auth);
+
   const {
+    setValue,
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<RegisterFormData>({
     mode: "onTouched",
   });
+
+  useEffect(() => {
+    if (auth) {
+      setValue("name", auth.user?.firstname || "");
+      setValue("mobile", auth.user?.phone || "");
+      setValue("lastName", auth.user?.lastname || "");
+    }
+  }, [auth]);
 
   function handleSubmitForm(data: RegisterFormData) {
     console.log(data);

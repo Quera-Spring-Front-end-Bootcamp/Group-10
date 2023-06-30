@@ -1,7 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-hot-toast";
 
-const initialState = {
-  user: null,
+type AuthSliceUserType = {
+  _id: string;
+  username: string;
+  firstname: string;
+  lastname: string;
+  email: string;
+  profile_url: string;
+  phone: string;
+  settings: [];
+} | null;
+
+type AuthSliceType = {
+  user: AuthSliceUserType;
+  accessToken: string | null;
+  refreshToken: string | null;
+};
+
+function getUserFromLocalStorage(): AuthSliceUserType {
+  const user = localStorage.getItem("user");
+  if (user) {
+    return JSON.parse(user);
+  }
+  return null;
+}
+
+const initialState: AuthSliceType = {
+  user: getUserFromLocalStorage(),
   accessToken: localStorage.getItem("accessToken") || null,
   refreshToken: localStorage.getItem("refreshToken") || null,
 };
@@ -12,6 +38,8 @@ const authSlice = createSlice({
   reducers: {
     setUser: (state, action) => {
       state.user = action.payload;
+      const userStringify = JSON.stringify(action.payload);
+      localStorage.setItem("user", userStringify);
     },
     setAccessToken: (state, action) => {
       state.accessToken = action.payload;
@@ -27,6 +55,8 @@ const authSlice = createSlice({
       state.refreshToken = null;
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
+      localStorage.removeItem("user");
+      toast.success("با موفقیت از سامانه خارج شدید!");
     },
   },
 });

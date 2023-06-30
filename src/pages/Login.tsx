@@ -26,6 +26,10 @@ function Login() {
     formState: { errors },
   } = useForm<LoginFormData>({
     mode: "onTouched",
+    defaultValues: {
+      email: "",
+      password: "",
+    },
   });
 
   const { mutate, isLoading, isSuccess, data } = AuthLogin();

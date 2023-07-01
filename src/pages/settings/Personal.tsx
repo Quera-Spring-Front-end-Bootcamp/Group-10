@@ -3,15 +3,25 @@ import { useForm } from "react-hook-form";
 import FileInput from "../../components/ui/FileInput";
 import TextInput from "../../components/ui/TextInput";
 import Button from "../../components/ui/Button";
+import { useSelector } from "react-redux";
+import store, { RootState } from "../../redux/store";
+import { useEffect } from "react";
+import { UserUpdateUserById } from "../../api/User/UpdateUserById";
+import { toast } from "react-hot-toast";
+import { updateUser } from "../../redux/slices/authSlice";
 
 type RegisterFormData = {
   name: string;
   lastName: string;
-  mobile: number;
+  mobile: string;
 };
 
 function Personal() {
+  const auth = useSelector((state: RootState) => state.auth);
+  const { mutate, isSuccess } = UserUpdateUserById(auth.user?._id || "");
+
   const {
+    setValue,
     register,
     handleSubmit,
     formState: { errors },
@@ -19,8 +29,32 @@ function Personal() {
     mode: "onTouched",
   });
 
+  useEffect(() => {
+    if (auth) {
+      setValue("name", auth.user?.firstname || "");
+      setValue("mobile", auth.user?.phone || "");
+      setValue("lastName", auth.user?.lastname || "");
+    }
+  }, [auth]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("اطلاعات کاربر با موفقیت به روز رسانی شد.");
+    }
+  }, [isSuccess]);
+
   function handleSubmitForm(data: RegisterFormData) {
-    console.log(data);
+    mutate({
+      firstname: data.name,
+      lastname: data.lastName,
+      email: auth.user?.email || "",
+    });
+    store.dispatch(
+      updateUser({
+        firstname: data.name,
+        lastname: data.lastName,
+      })
+    );
   }
 
   return (

@@ -26,5 +26,5 @@ export function TagGetTagOfTaskByTaskId(id: string) {
     return data;
   }
 
-  return useQuery(["tagGetTagOfTaskByTaskId"], tagGetTagOfTaskByTaskId);
+  return useQuery(["tagGetTagOfTaskByTaskId", id], tagGetTagOfTaskByTaskId);
 }

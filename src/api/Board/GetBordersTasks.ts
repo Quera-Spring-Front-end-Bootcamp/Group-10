@@ -35,11 +35,11 @@ type BoardGetBoardersTasksResponse = ResponseBody<
   }[]
 >;
 
-export function GetBoardersTasks(BorderId : string) {
+export function GetBoardersTasks(BorderId: string) {
   async function getBoardersTasks(): Promise<BoardGetBoardersTasksResponse> {
     const { data } = await AXIOS.get(`${BoardRoute}/:${BorderId}/tasks`);
     return data;
   }
 
-  return useQuery(["GetAllProjectBoards"], getBoardersTasks);
+  return useQuery(["GetAllProjectBoards", BorderId], getBoardersTasks);
 }

@@ -20,11 +20,14 @@ type TagGetTagByTagNameOrIdResponse = ResponseBody<{
   tasks: tasksType[];
 }>;
 
-export function TagGetTagByTagNameOrId(id: string, name: string) {
+export function TagGetTagByTagNameOrId(id?: string, name?: string) {
   async function tagGetTagByTagNameOrId(): Promise<TagGetTagByTagNameOrIdResponse> {
-    const { data } = await AXIOS.get(`${TagRoute}:${id || name }`);
+    const { data } = await AXIOS.get(`${TagRoute}:${id || name}`);
     return data;
   }
 
-  return useQuery(["tagGetTagByTagNameOrId"], tagGetTagByTagNameOrId);
+  return useQuery(
+    ["tagGetTagByTagNameOrId", id || name],
+    tagGetTagByTagNameOrId
+  );
 }

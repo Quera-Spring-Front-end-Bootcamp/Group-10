@@ -15,17 +15,18 @@ import UserSettingsLayout from "../layouts/UserSettingsLayout";
 import Personal from "../pages/settings/Personal";
 import Account from "../pages/settings/Account";
 import Settings from "../pages/settings/Settings";
+import Project from "../pages/Project";
 
 /* -------------------------------------------------------------------------- */
 /*                                    Types                                   */
 /* -------------------------------------------------------------------------- */
 
-type RouteType = {
+export type RouteType = {
   name: string;
   title: string;
   component: () => JSX.Element;
   path: string;
-  isPublic?: boolean;
+  isPublic: boolean;
 };
 
 export type LayoutType = {
@@ -82,27 +83,42 @@ export const routes: LayoutType[] = [
         title: "اطلاعات فردی",
         component: Personal,
         path: "/user/personal",
-        isPublic: true,
+        isPublic: false,
       },
       {
         name: "user account settings",
         title: "اطلاعات حساب",
         component: Account,
         path: "/user/account",
-        isPublic: true,
+        isPublic: false,
       },
       {
         name: "user app settings",
         title: "تنظیمات سامانه",
         component: Settings,
         path: "/user/settings",
-        isPublic: true,
+        isPublic: false,
       },
     ],
   },
   {
     layout: MainLayout,
-    routes: [],
+    routes: [
+      {
+        name: "project",
+        title: "Project page",
+        component: Project,
+        path: "/projects",
+        isPublic: false,
+      },
+      {
+        name: "project",
+        title: "Project page",
+        component: Project,
+        path: "/projects/:id/:boardType",
+        isPublic: false,
+      },
+    ],
   },
   {
     layout: EmptyLayout,

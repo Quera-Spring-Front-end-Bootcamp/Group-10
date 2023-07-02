@@ -1,23 +1,46 @@
 import { Link } from "react-router-dom";
 
 import useRouteIsActive from "../hooks/useRouteIsActive";
+import { PropsWithChildren } from "react";
 
 /* -------------------------------------------------------------------------- */
 /*                                     Type                                   */
 /* -------------------------------------------------------------------------- */
-export type ListItemType = {
-  id: number;
-  title: string;
+export interface ListItemType extends PropsWithChildren {
+  id: number | string;
+  title?: string;
   to: string;
   icon?: JSX.Element;
   className?: string;
-};
+  customActiveChecker?: string;
+}
 
-function ListItem({ title, to, icon, className }: ListItemType) {
+function ListItem({
+  title,
+  to,
+  icon,
+  className,
+  children = null,
+  customActiveChecker,
+}: ListItemType) {
   /* -------------------------------------------------------------------------- */
   /*                                    hook                                    */
   /* -------------------------------------------------------------------------- */
-  const isActive = useRouteIsActive(to);
+  const isActive = useRouteIsActive(
+    customActiveChecker ? customActiveChecker : to
+  );
+  if (children) {
+    return (
+      <Link
+        to={to}
+        className={`flex gap-2 align-middle p-1 
+       ${isActive && "bg-blue-light"}
+       ${className}`}
+      >
+        {children}
+      </Link>
+    );
+  }
 
   return (
     <Link

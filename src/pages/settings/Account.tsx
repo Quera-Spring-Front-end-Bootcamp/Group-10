@@ -2,15 +2,25 @@ import { useForm } from "react-hook-form";
 
 import TextInput from "../../components/ui/TextInput";
 import Button from "../../components/ui/Button";
+import { useSelector } from "react-redux";
+import store, { RootState } from "../../redux/store";
+import { useEffect } from "react";
+import { UserUpdateUserById } from "../../api/User/UpdateUserById";
+import toast from "react-hot-toast";
+import { updateUser } from "../../redux/slices/authSlice";
 
 type RegisterFormData = {
-  email: string;
+  email?: string;
   username: string;
   password: number;
 };
 
 function Account() {
+  const auth = useSelector((state: RootState) => state.auth);
+  const { mutate, isSuccess } = UserUpdateUserById(auth.user?._id || "");
+
   const {
+    setValue,
     register,
     handleSubmit,
     formState: { errors },
@@ -18,8 +28,28 @@ function Account() {
     mode: "onTouched",
   });
 
+  useEffect(() => {
+    if (auth) {
+      setValue("email", auth.user?.email || "");
+      setValue("username", auth.user?.username || "");
+    }
+  }, [auth]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("اطلاعات کاربر با موفقیت به روز رسانی شد.");
+    }
+  }, [isSuccess]);
+
   function handleSubmitForm(data: RegisterFormData) {
-    console.log(data);
+    mutate({
+      email: data.email,
+    });
+    store.dispatch(
+      updateUser({
+        email: data.email,
+      })
+    );
   }
 
   return (
@@ -49,7 +79,7 @@ function Account() {
             className="w-full"
             register={register("password", {
               min: 8,
-              required: "این فیلد الزامی است!",
+              // required: "این فیلد الزامی است!",
             })}
             name="password"
             hint={errors.password?.message}

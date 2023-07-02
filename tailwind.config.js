@@ -12,6 +12,7 @@ export default {
         gray: "#AAAAAA",
         lightGray: "#F0F1F3",
         "gray-light": "#FAFBFC",
+        "gray-semi-light": "#D3D3D3",
         "gray-dark": "#323232",
         "blue-light": "#C5FFFF",
       },

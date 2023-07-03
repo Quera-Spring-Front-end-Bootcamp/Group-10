@@ -64,7 +64,7 @@ function Calendar() {
                 </div>
 
                 <div className="mt-4 flex flex-row justify-between items-center">
-                  <div className="flex">
+                  <div className="flex gap-4">
                     <button>
                       <FlagIcon className="stroke-red-400" />
                     </button>
@@ -75,7 +75,7 @@ function Calendar() {
                   </Button>
                 </div>
               </Dialog.Panel>
-              <div className="fixed z-50 bg-white overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
+              {/* <div className="fixed z-50 bg-white overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
                 <div className="relative grid gap-8 bg-white p-7 lg:grid-cols-2"></div>
                 <div className="bg-gray-50 p-4">
                   <a
@@ -92,7 +92,7 @@ function Calendar() {
                     </span>
                   </a>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </Dialog>

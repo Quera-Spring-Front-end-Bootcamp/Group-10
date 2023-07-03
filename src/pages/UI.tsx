@@ -1,11 +1,7 @@
-import Calendar from "../components/calendar/Calendar";
+import TabList from "../components/ui/TabList";
 
 function UI() {
-  return (
-    <div>
-      <Calendar />
-    </div>
-  );
+  return <TabList />;
 }
 
 export default UI;

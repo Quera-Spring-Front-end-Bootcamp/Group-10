@@ -1,15 +1,12 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import {
-  WorkspaceGetAllResponseBody,
-  WorkspaceProjectType,
-} from "../../api/Workspace/GetAllWorkspaces";
+import { ProjectBoardType } from "../../api/Project/GetProjectById";
 
 type ProjectSliceType = {
   _id?: string;
   name?: string;
   workspace?: string;
   members: any[];
-  boards: any[];
+  boards: ProjectBoardType[];
 };
 
 const initialState: ProjectSliceType = {

@@ -6,12 +6,16 @@ import ProjectCalendarView from "./ProjectCalendarView";
 import { ProjectGetProjectById } from "../api/Project/GetProjectById";
 import { setProject } from "../redux/slices/projectSlice";
 import store from "../redux/store";
+import { GetAllProjectBoards } from "../api/Board/GetAllProjectBoards";
+import { setBoards } from "../redux/slices/boardsSlice";
 
 function Project() {
   const [id, setId] = useState("");
   const [boardType, setBoardType] = useState("");
   const { pathname } = useLocation();
-  const { data, refetch } = ProjectGetProjectById(id);
+  const { data: dataProject, refetch: refetchProject } =
+    ProjectGetProjectById(id);
+  const { data: dataBoards, refetch: refetchBoards } = GetAllProjectBoards(id);
   // const project = useSelector((state: RootState) => state.project);
 
   useEffect(() => {
@@ -24,15 +28,19 @@ function Project() {
 
   useEffect(() => {
     if (id) {
-      refetch();
+      refetchProject();
+      refetchBoards();
     }
   }, [id]);
 
   useEffect(() => {
-    if (data?.data) {
-      store.dispatch(setProject(data.data));
+    if (dataProject?.data) {
+      store.dispatch(setProject(dataProject.data));
     }
-  }, [data]);
+    if (dataBoards?.data) {
+      store.dispatch(setBoards(dataBoards.data));
+    }
+  }, [dataProject, dataBoards]);
 
   return (
     <div>

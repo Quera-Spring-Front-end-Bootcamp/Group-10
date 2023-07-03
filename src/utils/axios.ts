@@ -1,6 +1,7 @@
 import axios from "axios";
 import { setAccessToken, logout } from "../redux/slices/authSlice";
 import store from "../redux/store";
+import { AuthRefreshTokenRoute } from "../api/api.routes";
 
 const AXIOS = axios.create({
   baseURL: "http://localhost:3000/api",
@@ -33,10 +34,10 @@ AXIOS.interceptors.response.use(
     if (
       (error.response.status === 401 || error.response.status === 403) &&
       !originalRequest._retry &&
-      originalRequest.url !== "/auth/refreshtoken" // API endpoint to refresh tokens
+      originalRequest.url !== AuthRefreshTokenRoute // API endpoint to refresh tokens
     ) {
       originalRequest._retry = true;
-      return AXIOS.post("/auth/refreshtoken", {
+      return AXIOS.post(AuthRefreshTokenRoute, {
         refreshToken: refreshToken || "",
       })
         .then((res) => {

@@ -1,8 +1,6 @@
 import { NavLink } from "react-router-dom";
 
 import Logo from "../Logo";
-import Button from "../ui/Button";
-import PlusIcon from "../icons/PlusIcon";
 import SearchInput from "../SearchInput";
 import MainLayoutDrawerList from "./MainLayoutDrawerList";
 import Avatar from "../ui/Avatar";
@@ -10,6 +8,7 @@ import ExitIcon from "../icons/ExitIcon";
 import store, { RootState } from "../../redux/store";
 import { useSelector } from "react-redux";
 import { logout } from "../../redux/slices/authSlice";
+import WorkTask from "../CreateWorkSpace/WorkTask";
 
 function MainLayoutDrawer() {
   const auth = useSelector((state: RootState) => state.auth);
@@ -30,10 +29,8 @@ function MainLayoutDrawer() {
         <div className="mt-3">
           <SearchInput placeholder="جستجو کنید" />
         </div>
-        <Button className="!py-1 !bg-gray-semi-light flex items-center justify-center mt-3">
-          <PlusIcon className="stroke-black" />
-          <span className="text-black text-sm">ساخت اسپیس جدید</span>
-        </Button>
+
+        <WorkTask />
         <div className="flex-1 overflow-auto">
           <MainLayoutDrawerList />
         </div>
@@ -43,7 +40,6 @@ function MainLayoutDrawer() {
             <span>{auth.user?.username}</span>
           </button>
         </NavLink>
-        {/* <NavLink to="/"> */}
         <button
           className="flex items-center gap-2"
           onClick={() => logoutUser()}
@@ -53,7 +49,6 @@ function MainLayoutDrawer() {
           </div>
           <span className="text-gray">خروج</span>
         </button>
-        {/* </NavLink> */}
       </div>
     </div>
   );

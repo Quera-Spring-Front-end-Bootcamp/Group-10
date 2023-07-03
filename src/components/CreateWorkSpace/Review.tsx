@@ -1,5 +1,5 @@
-import Button from "./Button";
-import Avatar from "./Avatar";
+import Button from "../ui/Button";
+import Avatar from "../ui/Avatar";
 
 type Props = {
   name?: string;

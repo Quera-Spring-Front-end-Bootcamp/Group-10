@@ -2,6 +2,12 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import AXIOS from "../../utils/axios";
 import { ResponseBody } from "../Types";
 
+export type ProjectBoardType = {
+  board: string;
+  position: number;
+  _id: string;
+};
+
 type ProjectGetProjectByIdResponseBody = ResponseBody<{
   _id: string; //id
   name: string;
@@ -19,7 +25,7 @@ type ProjectGetProjectByIdResponseBody = ResponseBody<{
       role: string;
     }
   ];
-  boards: [];
+  boards: ProjectBoardType[];
 }>;
 
 export function ProjectGetProjectById(id: string) {

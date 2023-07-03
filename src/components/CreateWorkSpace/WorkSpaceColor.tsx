@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import SelectIcon from "../icons/SelectIcon";
 import Forbidden from "../icons/ForbiddenIcon";
-import Button from "./Button";
+import Button from "../ui/Button";
 
 interface Color {
   id: number;

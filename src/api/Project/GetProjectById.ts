@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import AXIOS from "../../utils/axios";
 import { ResponseBody } from "../Types";
 
@@ -24,9 +24,11 @@ type ProjectGetProjectByIdResponseBody = ResponseBody<{
 
 export function ProjectGetProjectById(id: string) {
   async function projectGetProjectById(): Promise<ProjectGetProjectByIdResponseBody> {
-    const { data } = await AXIOS.put(`/projects/:${id}`);
+    const { data } = await AXIOS.get(`/projects/${id}`);
     return data;
   }
 
-  return useMutation(() => projectGetProjectById());
+  return useQuery(["getUserByUserNameOrId", id], projectGetProjectById, {
+    enabled: false,
+  });
 }

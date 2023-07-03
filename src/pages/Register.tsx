@@ -4,9 +4,12 @@ import TextInput from "../components/ui/TextInput";
 import Checkbox from "../components/ui/Checkbox";
 import Card from "../components/ui/Card";
 import { useForm } from "react-hook-form";
+import { useEffect } from "react";
+import { toast } from "react-hot-toast";
+import { AuthRegister } from "../api/Auth/Register";
 
 type RegisterFormData = {
-  name: string;
+  username: string;
   email: string;
   password: string;
   isAccepted: boolean;
@@ -21,9 +24,23 @@ function Register() {
     mode: "onTouched",
   });
 
+  const { mutate, isLoading, isSuccess, data } = AuthRegister();
+  const navigate = useNavigate();
+
   function handleSubmitForm(data: RegisterFormData) {
-    console.log(data);
+    mutate({
+      username: data.username,
+      email: data.email,
+      password: data.password,
+    });
   }
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success(data?.message || "با موفقیت ثبت نام شدید");
+      navigate("/login");
+    }
+  }, [isSuccess]);
 
   return (
     <div className="flex w-screen h-screen items-center justify-center">
@@ -34,13 +51,13 @@ function Register() {
         <form onSubmit={handleSubmit(handleSubmitForm)} className="mt-7">
           <TextInput
             type="text"
-            label="نام کامل"
+            label="نام کاربری"
             className="w-full"
-            register={register("name", {
+            register={register("username", {
               required: "این فیلد الزامی است!",
             })}
-            name="name"
-            hint={errors.name?.message}
+            name="username"
+            hint={errors.username?.message}
             containerClassName="mb-4"
           />
           <TextInput
@@ -77,7 +94,7 @@ function Register() {
             })}
             hint={errors.isAccepted?.message}
           />
-          <Button className="w-full" type="submit">
+          <Button className="w-full" type="submit" disabled={isLoading}>
             ثبت نام
           </Button>
         </form>

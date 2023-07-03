@@ -1,105 +1,54 @@
-import { Disclosure } from "@headlessui/react";
+import { Disclosure, Popover } from "@headlessui/react";
 import ListItem from "../ListItem";
-
-type MainLayoutDrawerListSubProject = {
-  id: number;
-  title: string;
-};
-
-type MainLayoutDrawerList = {
-  id: number;
-  title: string;
-  color: string;
-  subProjects: MainLayoutDrawerListSubProject[];
-};
-
-const tempProjects: MainLayoutDrawerList[] = [
-  {
-    id: 1,
-    title: "درس مدیریت پروژه",
-    color: "bg-[#ff0000]",
-    subProjects: [
-      {
-        id: 1,
-        title: "درس 1",
-      },
-      {
-        id: 2,
-        title: "درس 2",
-      },
-      {
-        id: 3,
-        title: "درس 2",
-      },
-      {
-        id: 4,
-        title: "درس 2",
-      },
-    ],
-  },
-  {
-    id: 2,
-    title: "کارهای شخصی",
-    color: "bg-[#00ff00]",
-    subProjects: [
-      {
-        id: 5,
-        title: "کارهای شخصی 1",
-      },
-      {
-        id: 6,
-        title: "کارهای شخصی 1",
-      },
-      {
-        id: 7,
-        title: "کارهای شخصی 1",
-      },
-      {
-        id: 8,
-        title: "کارهای شخصی 1",
-      },
-      {
-        id: 9,
-        title: "کارهای شخصی 1",
-      },
-      {
-        id: 10,
-        title: "کارهای شخصی 1",
-      },
-      {
-        id: 11,
-        title: "کارهای شخصی 1",
-      },
-      {
-        id: 11,
-        title: "کارهای شخصی 1",
-      },
-      {
-        id: 11,
-        title: "کارهای شخصی 1",
-      },
-    ],
-  },
-];
+import { RootState } from "../../redux/store";
+import { useSelector } from "react-redux";
+import DotsMenuIcon from "../icons/DotsMenuIcon";
+import WorkspaceMorePopup from "./WorkspaceMorePopup";
+import ProjectMorePopup from "./ProjectMorePopup";
 
 function MainLayoutDrawerList() {
+  const workspaces = useSelector((state: RootState) => state.workSpace);
+
   return (
     <div className="flex flex-col mt-4 gap-2 overflow-auto">
-      {tempProjects.map(({ id, title, color, subProjects }) => (
-        <Disclosure key={id}>
-          <Disclosure.Button className="py-2 text-right flex items-center gap-2">
-            <div className={`w-5 h-5 rounded-md ${color}`} />
-            {title}
+      {workspaces.map(({ _id, name, projects }) => (
+        <Disclosure key={_id}>
+          <Disclosure.Button className="py-2 text-right flex justify-between align-middle group">
+            <div className="flex flex-row gap-2 items-center">
+              <div className={`w-5 h-5 rounded-md bg-[#ff0000]`} />
+              {name}
+            </div>
+            <Popover>
+              <Popover.Button>
+                <DotsMenuIcon className="stroke-gray invisible group-hover:visible" />
+              </Popover.Button>
+
+              <Popover.Panel className="absolute z-10">
+                <WorkspaceMorePopup />
+              </Popover.Panel>
+            </Popover>
           </Disclosure.Button>
           <Disclosure.Panel className="text-gray-500 pr-7 flex gap-3 flex-col">
-            {subProjects.map((subProject) => {
+            {projects.map((project) => {
               return (
                 <ListItem
-                  key={subProject.id}
-                  id={subProject.id}
-                  title={subProject.title}
-                  to={`/projects/${subProject.id}`}
-                />
+                  key={project._id}
+                  id={project._id}
+                  to={`/projects/${project._id}/list`}
+                  customActiveChecker={`/projects/${project._id}`}
+                  className="flex justify-between align-middle items-center group w-full"
+                >
+                  <span>{project.name}</span>
+                  <Popover>
+                    <Popover.Button className="flex justify-center">
+                      <DotsMenuIcon className="stroke-gray invisible group-hover:visible" />
+                    </Popover.Button>
+
+                    <Popover.Panel className="absolute z-10">
+                      <ProjectMorePopup />
+                    </Popover.Panel>
+                  </Popover>
+                </ListItem>
               );
             })}
           </Disclosure.Panel>

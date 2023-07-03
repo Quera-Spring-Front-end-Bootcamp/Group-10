@@ -1,5 +1,7 @@
+import TabList from "../components/ui/TabList";
+
 function ProjectListView() {
-  return <div>ProjectListView</div>;
+  return <TabList />;
 }
 
 export default ProjectListView;

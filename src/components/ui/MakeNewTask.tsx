@@ -12,6 +12,7 @@ function MakeNewTask(): JSX.Element {
           <div className="w-4 h-4 bg-slate-300 rounded-sm ml-3"></div>
           <h2 className="ml-auto text-2xl font-medium">عنوان تسک</h2>
           <CloseIcon className="stroke-slate-500" />
+          
         </div>
         <div className="flex justify-start items-center mb-10">
           <p className="text-base font-medium">در</p>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-import MyCombobox from "./ComboBox";
+import { Popover } from '@headlessui/react'
+import MyCombobox from "./MyCombobox";
 import Button from "./Button";
 
 import CloseIcon from "../icons/CloseIcon";
@@ -22,24 +23,12 @@ const colorOptions: colorOption[] = [
 ];
 
 function TagBoxList(): JSX.Element {
-  const [showDiv1, setShowDiv1] = useState(false);
   const [selectedPiriority, setSelectedPiriority] =
     useState<colorOption | null>({
       colorCode: "stroke-[#B2ACAC]",
       name: "پایین",
     });
 
-  const handleButtonClick = (buttonNumber: number) => {
-    setShowDiv1(buttonNumber === 1 ? !showDiv1 : false);
-  };
-
-  const handleButtonClickTwo = (): void => {
-    if (selectedPiriority) {
-      setSelectedPiriority(null);
-    } else {
-      setSelectedPiriority(colorOptions[3]);
-    }
-  };
 
   const handleColorClick = (color: colorOption): void => {
     setSelectedPiriority(color);
@@ -47,15 +36,17 @@ function TagBoxList(): JSX.Element {
 
   return (
     <div className="flex justify-center items-center mb-6">
-      <button
-        type="button"
-        className="border-dotted border-2 border-slate-300 rounded-full w-12 h-12 p-1 ml-5 cursor-pointer"
-        onClick={handleButtonClickTwo}
-      >
-        <PiriorityIcon className={selectedPiriority?.colorCode} />
-      </button>
+      <Popover className="relative">
+        <Popover.Button
+          type="button"
+          className="border-dotted border-2 border-slate-300 rounded-full w-12 h-12 p-1 ml-5 cursor-pointer"
+        >
+          <PiriorityIcon className={selectedPiriority?.colorCode} />
+        </Popover.Button>
+
       {selectedPiriority && (
-        <div className="bg-white shadow-lg shadow-slate-400 rounded-xl p-3 absolute right-10 bottom-28">
+      <Popover.Panel>
+        <div className="w-40 bg-white shadow-lg shadow-slate-400 rounded-xl p-3 absolute right-2 bottom-14">
           <ul className="py-1">
             {colorOptions.map((color) => (
               <li
@@ -75,26 +66,28 @@ function TagBoxList(): JSX.Element {
             </li>
           </ul>
         </div>
+      </Popover.Panel>
       )}
+      </Popover>
       <button
         type="button"
         className="border-dotted border-2 border-slate-300 rounded-full w-12 h-12 p-1 ml-5"
       >
         <DateIcon className="mr-1" />
       </button>
-      <button
-        type="button"
-        className="border-dotted border-2 border-slate-300 rounded-full w-12 h-12 p-1 ml-5"
-        onClick={() => handleButtonClick(1)}
-      >
+      <Popover className="relative">
+        <Popover.Button
+           type="button"
+           className="border-dotted border-2 border-slate-300 rounded-full w-12 h-12 p-1 ml-5"
+         >
         <FileIcon className="mr-1" />
-      </button>
-      {showDiv1 && (
-        <div className="bg-white shadow-lg shadow-slate-400 rounded-xl p-3 absolute right-24 bottom-28">
-          <MyCombobox />
-        </div>
-      )}
-
+        </Popover.Button>
+        <Popover.Panel>
+          <div className="bg-white shadow-lg shadow-slate-400 rounded-xl p-3 absolute right-2 bottom-14">
+            <MyCombobox />
+          </div>
+        </Popover.Panel>
+      </Popover>
       <div className="flex flex-col relative">
         <p className="w-5 h-5 bg-teal-500 text-sm text-white text-center rounded-full absolute top-0 right-0">
           2

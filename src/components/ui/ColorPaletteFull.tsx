@@ -2,7 +2,7 @@ import { useState } from "react";
 import SelectIcon from "../icons/SelectIcon";
 
 interface Color {
-  id: number;
+  id: number;//id
   colorHEX: string;
 }
 
